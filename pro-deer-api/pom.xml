@@ -12,6 +12,19 @@
     <artifactId>pro-deer-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.sodacar.deer</groupId>
+            <artifactId>service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sodacar.deer</groupId>
+            <artifactId>dao</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>
