@@ -435,136 +435,6 @@ public class VehicleExample {
             return (Criteria) this;
         }
 
-        public Criteria andDeviceIdIsNull() {
-            addCriterion("device_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeviceIdIsNotNull() {
-            addCriterion("device_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeviceIdEqualTo(Long value) {
-            addCriterion("device_id =", value, "deviceId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeviceIdNotEqualTo(Long value) {
-            addCriterion("device_id <>", value, "deviceId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeviceIdGreaterThan(Long value) {
-            addCriterion("device_id >", value, "deviceId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeviceIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("device_id >=", value, "deviceId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeviceIdLessThan(Long value) {
-            addCriterion("device_id <", value, "deviceId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeviceIdLessThanOrEqualTo(Long value) {
-            addCriterion("device_id <=", value, "deviceId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeviceIdIn(List<Long> values) {
-            addCriterion("device_id in", values, "deviceId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeviceIdNotIn(List<Long> values) {
-            addCriterion("device_id not in", values, "deviceId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeviceIdBetween(Long value1, Long value2) {
-            addCriterion("device_id between", value1, value2, "deviceId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeviceIdNotBetween(Long value1, Long value2) {
-            addCriterion("device_id not between", value1, value2, "deviceId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeviceNumerIsNull() {
-            addCriterion("device_numer is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeviceNumerIsNotNull() {
-            addCriterion("device_numer is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeviceNumerEqualTo(String value) {
-            addCriterion("device_numer =", value, "deviceNumer");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeviceNumerNotEqualTo(String value) {
-            addCriterion("device_numer <>", value, "deviceNumer");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeviceNumerGreaterThan(String value) {
-            addCriterion("device_numer >", value, "deviceNumer");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeviceNumerGreaterThanOrEqualTo(String value) {
-            addCriterion("device_numer >=", value, "deviceNumer");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeviceNumerLessThan(String value) {
-            addCriterion("device_numer <", value, "deviceNumer");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeviceNumerLessThanOrEqualTo(String value) {
-            addCriterion("device_numer <=", value, "deviceNumer");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeviceNumerLike(String value) {
-            addCriterion("device_numer like", value, "deviceNumer");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeviceNumerNotLike(String value) {
-            addCriterion("device_numer not like", value, "deviceNumer");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeviceNumerIn(List<String> values) {
-            addCriterion("device_numer in", values, "deviceNumer");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeviceNumerNotIn(List<String> values) {
-            addCriterion("device_numer not in", values, "deviceNumer");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeviceNumerBetween(String value1, String value2) {
-            addCriterion("device_numer between", value1, value2, "deviceNumer");
-            return (Criteria) this;
-        }
-
-        public Criteria andDeviceNumerNotBetween(String value1, String value2) {
-            addCriterion("device_numer not between", value1, value2, "deviceNumer");
-            return (Criteria) this;
-        }
-
         public Criteria andFactoryIdIsNull() {
             addCriterion("factory_id is null");
             return (Criteria) this;
@@ -692,6 +562,66 @@ public class VehicleExample {
 
         public Criteria andFactoryNameNotBetween(String value1, String value2) {
             addCriterion("factory_name not between", value1, value2, "factoryName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeviceIdIsNull() {
+            addCriterion("device_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeviceIdIsNotNull() {
+            addCriterion("device_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeviceIdEqualTo(Long value) {
+            addCriterion("device_id =", value, "deviceId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeviceIdNotEqualTo(Long value) {
+            addCriterion("device_id <>", value, "deviceId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeviceIdGreaterThan(Long value) {
+            addCriterion("device_id >", value, "deviceId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeviceIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("device_id >=", value, "deviceId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeviceIdLessThan(Long value) {
+            addCriterion("device_id <", value, "deviceId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeviceIdLessThanOrEqualTo(Long value) {
+            addCriterion("device_id <=", value, "deviceId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeviceIdIn(List<Long> values) {
+            addCriterion("device_id in", values, "deviceId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeviceIdNotIn(List<Long> values) {
+            addCriterion("device_id not in", values, "deviceId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeviceIdBetween(Long value1, Long value2) {
+            addCriterion("device_id between", value1, value2, "deviceId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeviceIdNotBetween(Long value1, Long value2) {
+            addCriterion("device_id not between", value1, value2, "deviceId");
             return (Criteria) this;
         }
 

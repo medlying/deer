@@ -13,13 +13,11 @@ public class Vehicle {
 
     private String engineNumber;
 
-    private Long deviceId;
-
-    private String deviceNumer;
-
     private Long factoryId;
 
     private String factoryName;
+
+    private Long deviceId;
 
     private String deviceNumber;
 
@@ -53,16 +51,15 @@ public class Vehicle {
 
     private String updaterType;
 
-    public Vehicle(Long id, Long vehicleModelId, String vehicleModeName, String vin, String engineNumber, Long deviceId, String deviceNumer, Long factoryId, String factoryName, String deviceNumber, Long dealerId, String dealerName, String bindMobile, String color, String licenseNumber, DateTime productAt, String status, DateTime createdAt, Long creatorId, String creatorName, DateTime updatedAt, Long updaterId, String updaterName, String creatorType, String updaterType) {
+    public Vehicle(Long id, Long vehicleModelId, String vehicleModeName, String vin, String engineNumber, Long factoryId, String factoryName, Long deviceId, String deviceNumber, Long dealerId, String dealerName, String bindMobile, String color, String licenseNumber, DateTime productAt, String status, DateTime createdAt, Long creatorId, String creatorName, DateTime updatedAt, Long updaterId, String updaterName, String creatorType, String updaterType) {
         this.id = id;
         this.vehicleModelId = vehicleModelId;
         this.vehicleModeName = vehicleModeName;
         this.vin = vin;
         this.engineNumber = engineNumber;
-        this.deviceId = deviceId;
-        this.deviceNumer = deviceNumer;
         this.factoryId = factoryId;
         this.factoryName = factoryName;
+        this.deviceId = deviceId;
         this.deviceNumber = deviceNumber;
         this.dealerId = dealerId;
         this.dealerName = dealerName;
@@ -125,22 +122,6 @@ public class Vehicle {
         this.engineNumber = engineNumber == null ? null : engineNumber.trim();
     }
 
-    public Long getDeviceId() {
-        return deviceId;
-    }
-
-    public void setDeviceId(Long deviceId) {
-        this.deviceId = deviceId;
-    }
-
-    public String getDeviceNumer() {
-        return deviceNumer;
-    }
-
-    public void setDeviceNumer(String deviceNumer) {
-        this.deviceNumer = deviceNumer == null ? null : deviceNumer.trim();
-    }
-
     public Long getFactoryId() {
         return factoryId;
     }
@@ -155,6 +136,14 @@ public class Vehicle {
 
     public void setFactoryName(String factoryName) {
         this.factoryName = factoryName == null ? null : factoryName.trim();
+    }
+
+    public Long getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(Long deviceId) {
+        this.deviceId = deviceId;
     }
 
     public String getDeviceNumber() {
