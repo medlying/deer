@@ -1,4 +1,4 @@
-package com.sodacar.api;
+package com.sodacar.deer.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

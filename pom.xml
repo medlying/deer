@@ -43,9 +43,11 @@
 
         <flyway.version>5.2.4</flyway.version>
 
-        <!-- -->
+        <!-- tools -->
         <json.path.version>2.2.0</json.path.version>
         <mybatis-spring-boot-starter.version>2.0.1</mybatis-spring-boot-starter.version>
+        <mybatis-generator-maven-plugin.version>1.3.7</mybatis-generator-maven-plugin.version>
+
     </properties>
 
     <dependencies>
@@ -58,6 +60,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>${joda.time.version}</version>
         </dependency>
     </dependencies>
 

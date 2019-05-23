@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sodacar.deer.dao.mapper.VehicleBrandsMapper">
+  <resultMap id="BaseResultMap" type="com.sodacar.deer.dao.model.VehicleBrands">
+    <constructor>
+      <arg column="NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CREATED_AT" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="SOURCE_FROM" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="SOURCE_ID" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="DATA_FROM" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.sodacar.deer.dao.model.VehicleBrands">
+    <constructor>
+      <arg column="NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CREATED_AT" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="SOURCE_FROM" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="SOURCE_ID" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="DATA_FROM" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="UUID" javaType="_byte[]" jdbcType="BINARY" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    NAME, CREATED_AT, SOURCE_FROM, SOURCE_ID, DATA_FROM
+  </sql>
+  <sql id="Blob_Column_List">
+    UUID
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.sodacar.deer.dao.model.VehicleBrandsExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from VEHICLE_BRANDS
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.sodacar.deer.dao.model.VehicleBrandsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from VEHICLE_BRANDS
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.sodacar.deer.dao.model.VehicleBrandsExample">
+    delete from VEHICLE_BRANDS
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sodacar.deer.dao.model.VehicleBrands">
+    insert into VEHICLE_BRANDS (NAME, CREATED_AT, SOURCE_FROM, 
+      SOURCE_ID, DATA_FROM, UUID
+      )
+    values (#{name,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{sourceFrom,jdbcType=VARCHAR}, 
+      #{sourceId,jdbcType=INTEGER}, #{dataFrom,jdbcType=VARCHAR}, #{uuid,jdbcType=BINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sodacar.deer.dao.model.VehicleBrands">
+    insert into VEHICLE_BRANDS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="createdAt != null">
+        CREATED_AT,
+      </if>
+      <if test="sourceFrom != null">
+        SOURCE_FROM,
+      </if>
+      <if test="sourceId != null">
+        SOURCE_ID,
+      </if>
+      <if test="dataFrom != null">
+        DATA_FROM,
+      </if>
+      <if test="uuid != null">
+        UUID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sourceFrom != null">
+        #{sourceFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceId != null">
+        #{sourceId,jdbcType=INTEGER},
+      </if>
+      <if test="dataFrom != null">
+        #{dataFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sodacar.deer.dao.model.VehicleBrandsExample" resultType="java.lang.Long">
+    select count(*) from VEHICLE_BRANDS
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update VEHICLE_BRANDS
+    <set>
+      <if test="record.name != null">
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdAt != null">
+        CREATED_AT = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sourceFrom != null">
+        SOURCE_FROM = #{record.sourceFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sourceId != null">
+        SOURCE_ID = #{record.sourceId,jdbcType=INTEGER},
+      </if>
+      <if test="record.dataFrom != null">
+        DATA_FROM = #{record.dataFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uuid != null">
+        UUID = #{record.uuid,jdbcType=BINARY},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update VEHICLE_BRANDS
+    set NAME = #{record.name,jdbcType=VARCHAR},
+      CREATED_AT = #{record.createdAt,jdbcType=TIMESTAMP},
+      SOURCE_FROM = #{record.sourceFrom,jdbcType=VARCHAR},
+      SOURCE_ID = #{record.sourceId,jdbcType=INTEGER},
+      DATA_FROM = #{record.dataFrom,jdbcType=VARCHAR},
+      UUID = #{record.uuid,jdbcType=BINARY}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update VEHICLE_BRANDS
+    set NAME = #{record.name,jdbcType=VARCHAR},
+      CREATED_AT = #{record.createdAt,jdbcType=TIMESTAMP},
+      SOURCE_FROM = #{record.sourceFrom,jdbcType=VARCHAR},
+      SOURCE_ID = #{record.sourceId,jdbcType=INTEGER},
+      DATA_FROM = #{record.dataFrom,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <resultMap id="BaseResultMap" type="com.sodacar.deer.dao.model.VehicleBrands">
+    <constructor>
+      <arg column="NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="URL" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CREATED_AT" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="CREATED_BY_NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CREATED_BY_TYPE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="UPDATED_AT" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="UPDATED_BY_NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="UPDATED_BY_TYPE" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.sodacar.deer.dao.model.VehicleBrandsWithBLOBs">
+    <constructor>
+      <arg column="NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="URL" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CREATED_AT" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="CREATED_BY_NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CREATED_BY_TYPE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="UPDATED_AT" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="UPDATED_BY_NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="UPDATED_BY_TYPE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="UUID" javaType="_byte[]" jdbcType="BINARY" />
+      <arg column="BID" javaType="_byte[]" jdbcType="BINARY" />
+      <arg column="CREATED_BY_ID" javaType="_byte[]" jdbcType="BINARY" />
+      <arg column="UPDATED_BY_ID" javaType="_byte[]" jdbcType="BINARY" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    NAME, URL, CREATED_AT, CREATED_BY_NAME, CREATED_BY_TYPE, UPDATED_AT, UPDATED_BY_NAME, 
+    UPDATED_BY_TYPE
+  </sql>
+  <sql id="Blob_Column_List">
+    UUID, BID, CREATED_BY_ID, UPDATED_BY_ID
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.sodacar.deer.dao.model.VehicleBrandsExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from VEHICLE_BRANDS
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.sodacar.deer.dao.model.VehicleBrandsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from VEHICLE_BRANDS
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.sodacar.deer.dao.model.VehicleBrandsExample">
+    delete from VEHICLE_BRANDS
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sodacar.deer.dao.model.VehicleBrandsWithBLOBs">
+    insert into VEHICLE_BRANDS (NAME, URL, CREATED_AT, 
+      CREATED_BY_NAME, CREATED_BY_TYPE, UPDATED_AT, 
+      UPDATED_BY_NAME, UPDATED_BY_TYPE, UUID, 
+      BID, CREATED_BY_ID, UPDATED_BY_ID
+      )
+    values (#{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{createdByName,jdbcType=VARCHAR}, #{createdByType,jdbcType=VARCHAR}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{updatedByName,jdbcType=VARCHAR}, #{updatedByType,jdbcType=VARCHAR}, #{uuid,jdbcType=BINARY}, 
+      #{bid,jdbcType=BINARY}, #{createdById,jdbcType=BINARY}, #{updatedById,jdbcType=BINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sodacar.deer.dao.model.VehicleBrandsWithBLOBs">
+    insert into VEHICLE_BRANDS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="url != null">
+        URL,
+      </if>
+      <if test="createdAt != null">
+        CREATED_AT,
+      </if>
+      <if test="createdByName != null">
+        CREATED_BY_NAME,
+      </if>
+      <if test="createdByType != null">
+        CREATED_BY_TYPE,
+      </if>
+      <if test="updatedAt != null">
+        UPDATED_AT,
+      </if>
+      <if test="updatedByName != null">
+        UPDATED_BY_NAME,
+      </if>
+      <if test="updatedByType != null">
+        UPDATED_BY_TYPE,
+      </if>
+      <if test="uuid != null">
+        UUID,
+      </if>
+      <if test="bid != null">
+        BID,
+      </if>
+      <if test="createdById != null">
+        CREATED_BY_ID,
+      </if>
+      <if test="updatedById != null">
+        UPDATED_BY_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdByName != null">
+        #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdByType != null">
+        #{createdByType,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedByName != null">
+        #{updatedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedByType != null">
+        #{updatedByType,jdbcType=VARCHAR},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=BINARY},
+      </if>
+      <if test="bid != null">
+        #{bid,jdbcType=BINARY},
+      </if>
+      <if test="createdById != null">
+        #{createdById,jdbcType=BINARY},
+      </if>
+      <if test="updatedById != null">
+        #{updatedById,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sodacar.deer.dao.model.VehicleBrandsExample" resultType="java.lang.Long">
+    select count(*) from VEHICLE_BRANDS
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update VEHICLE_BRANDS
+    <set>
+      <if test="record.name != null">
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url != null">
+        URL = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdAt != null">
+        CREATED_AT = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdByName != null">
+        CREATED_BY_NAME = #{record.createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdByType != null">
+        CREATED_BY_TYPE = #{record.createdByType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatedAt != null">
+        UPDATED_AT = #{record.updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedByName != null">
+        UPDATED_BY_NAME = #{record.updatedByName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatedByType != null">
+        UPDATED_BY_TYPE = #{record.updatedByType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uuid != null">
+        UUID = #{record.uuid,jdbcType=BINARY},
+      </if>
+      <if test="record.bid != null">
+        BID = #{record.bid,jdbcType=BINARY},
+      </if>
+      <if test="record.createdById != null">
+        CREATED_BY_ID = #{record.createdById,jdbcType=BINARY},
+      </if>
+      <if test="record.updatedById != null">
+        UPDATED_BY_ID = #{record.updatedById,jdbcType=BINARY},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update VEHICLE_BRANDS
+    set NAME = #{record.name,jdbcType=VARCHAR},
+      URL = #{record.url,jdbcType=VARCHAR},
+      CREATED_AT = #{record.createdAt,jdbcType=TIMESTAMP},
+      CREATED_BY_NAME = #{record.createdByName,jdbcType=VARCHAR},
+      CREATED_BY_TYPE = #{record.createdByType,jdbcType=VARCHAR},
+      UPDATED_AT = #{record.updatedAt,jdbcType=TIMESTAMP},
+      UPDATED_BY_NAME = #{record.updatedByName,jdbcType=VARCHAR},
+      UPDATED_BY_TYPE = #{record.updatedByType,jdbcType=VARCHAR},
+      UUID = #{record.uuid,jdbcType=BINARY},
+      BID = #{record.bid,jdbcType=BINARY},
+      CREATED_BY_ID = #{record.createdById,jdbcType=BINARY},
+      UPDATED_BY_ID = #{record.updatedById,jdbcType=BINARY}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update VEHICLE_BRANDS
+    set NAME = #{record.name,jdbcType=VARCHAR},
+      URL = #{record.url,jdbcType=VARCHAR},
+      CREATED_AT = #{record.createdAt,jdbcType=TIMESTAMP},
+      CREATED_BY_NAME = #{record.createdByName,jdbcType=VARCHAR},
+      CREATED_BY_TYPE = #{record.createdByType,jdbcType=VARCHAR},
+      UPDATED_AT = #{record.updatedAt,jdbcType=TIMESTAMP},
+      UPDATED_BY_NAME = #{record.updatedByName,jdbcType=VARCHAR},
+      UPDATED_BY_TYPE = #{record.updatedByType,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
