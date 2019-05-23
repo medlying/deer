@@ -3,7 +3,7 @@ package com.sodacar.deer.dao.model;
 import org.joda.time.DateTime;
 
 public class Device {
-    private String uuid;
+    private Long id;
 
     private String number;
 
@@ -11,44 +11,50 @@ public class Device {
 
     private String status;
 
-    private Boolean enabled;
+    private Boolean isDeleted;
 
     private DateTime createdAt;
 
-    private String createdByName;
+    private Long creatorId;
 
-    private String createdByType;
+    private String creatorName;
+
+    private String creatorType;
 
     private DateTime updatedAt;
 
-    private String updatedByName;
+    private Long updaterId;
 
-    private String updatedByType;
+    private String updaterName;
 
-    public Device(String uuid, String number, String cardNumber, String status, Boolean enabled, DateTime createdAt, String createdByName, String createdByType, DateTime updatedAt, String updatedByName, String updatedByType) {
-        this.uuid = uuid;
+    private String updaterType;
+
+    public Device(Long id, String number, String cardNumber, String status, Boolean isDeleted, DateTime createdAt, Long creatorId, String creatorName, String creatorType, DateTime updatedAt, Long updaterId, String updaterName, String updaterType) {
+        this.id = id;
         this.number = number;
         this.cardNumber = cardNumber;
         this.status = status;
-        this.enabled = enabled;
+        this.isDeleted = isDeleted;
         this.createdAt = createdAt;
-        this.createdByName = createdByName;
-        this.createdByType = createdByType;
+        this.creatorId = creatorId;
+        this.creatorName = creatorName;
+        this.creatorType = creatorType;
         this.updatedAt = updatedAt;
-        this.updatedByName = updatedByName;
-        this.updatedByType = updatedByType;
+        this.updaterId = updaterId;
+        this.updaterName = updaterName;
+        this.updaterType = updaterType;
     }
 
     public Device() {
         super();
     }
 
-    public String getUuid() {
-        return uuid;
+    public Long getId() {
+        return id;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid == null ? null : uuid.trim();
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNumber() {
@@ -75,12 +81,12 @@ public class Device {
         this.status = status == null ? null : status.trim();
     }
 
-    public Boolean getEnabled() {
-        return enabled;
+    public Boolean getIsDeleted() {
+        return isDeleted;
     }
 
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
+    public void setIsDeleted(Boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 
     public DateTime getCreatedAt() {
@@ -91,20 +97,28 @@ public class Device {
         this.createdAt = createdAt;
     }
 
-    public String getCreatedByName() {
-        return createdByName;
+    public Long getCreatorId() {
+        return creatorId;
     }
 
-    public void setCreatedByName(String createdByName) {
-        this.createdByName = createdByName == null ? null : createdByName.trim();
+    public void setCreatorId(Long creatorId) {
+        this.creatorId = creatorId;
     }
 
-    public String getCreatedByType() {
-        return createdByType;
+    public String getCreatorName() {
+        return creatorName;
     }
 
-    public void setCreatedByType(String createdByType) {
-        this.createdByType = createdByType == null ? null : createdByType.trim();
+    public void setCreatorName(String creatorName) {
+        this.creatorName = creatorName == null ? null : creatorName.trim();
+    }
+
+    public String getCreatorType() {
+        return creatorType;
+    }
+
+    public void setCreatorType(String creatorType) {
+        this.creatorType = creatorType == null ? null : creatorType.trim();
     }
 
     public DateTime getUpdatedAt() {
@@ -115,19 +129,27 @@ public class Device {
         this.updatedAt = updatedAt;
     }
 
-    public String getUpdatedByName() {
-        return updatedByName;
+    public Long getUpdaterId() {
+        return updaterId;
     }
 
-    public void setUpdatedByName(String updatedByName) {
-        this.updatedByName = updatedByName == null ? null : updatedByName.trim();
+    public void setUpdaterId(Long updaterId) {
+        this.updaterId = updaterId;
     }
 
-    public String getUpdatedByType() {
-        return updatedByType;
+    public String getUpdaterName() {
+        return updaterName;
     }
 
-    public void setUpdatedByType(String updatedByType) {
-        this.updatedByType = updatedByType == null ? null : updatedByType.trim();
+    public void setUpdaterName(String updaterName) {
+        this.updaterName = updaterName == null ? null : updaterName.trim();
+    }
+
+    public String getUpdaterType() {
+        return updaterType;
+    }
+
+    public void setUpdaterType(String updaterType) {
+        this.updaterType = updaterType == null ? null : updaterType.trim();
     }
 }

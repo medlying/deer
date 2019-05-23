@@ -2,7 +2,6 @@ package com.sodacar.deer.dao.mapper;
 
 import com.sodacar.deer.dao.model.Device;
 import com.sodacar.deer.dao.model.DeviceExample;
-import com.sodacar.deer.dao.model.DeviceWithBLOBs;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -11,27 +10,21 @@ public interface DeviceMapper {
 
     int deleteByExample(DeviceExample example);
 
-    int deleteByPrimaryKey(String uuid);
+    int deleteByPrimaryKey(Long id);
 
-    int insert(DeviceWithBLOBs record);
+    int insert(Device record);
 
-    int insertSelective(DeviceWithBLOBs record);
-
-    List<DeviceWithBLOBs> selectByExampleWithBLOBs(DeviceExample example);
+    int insertSelective(Device record);
 
     List<Device> selectByExample(DeviceExample example);
 
-    DeviceWithBLOBs selectByPrimaryKey(String uuid);
+    Device selectByPrimaryKey(Long id);
 
-    int updateByExampleSelective(@Param("record") DeviceWithBLOBs record, @Param("example") DeviceExample example);
-
-    int updateByExampleWithBLOBs(@Param("record") DeviceWithBLOBs record, @Param("example") DeviceExample example);
+    int updateByExampleSelective(@Param("record") Device record, @Param("example") DeviceExample example);
 
     int updateByExample(@Param("record") Device record, @Param("example") DeviceExample example);
 
-    int updateByPrimaryKeySelective(DeviceWithBLOBs record);
-
-    int updateByPrimaryKeyWithBLOBs(DeviceWithBLOBs record);
+    int updateByPrimaryKeySelective(Device record);
 
     int updateByPrimaryKey(Device record);
 }

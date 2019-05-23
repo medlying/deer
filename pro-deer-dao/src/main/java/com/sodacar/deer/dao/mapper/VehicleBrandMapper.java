@@ -2,7 +2,6 @@ package com.sodacar.deer.dao.mapper;
 
 import com.sodacar.deer.dao.model.VehicleBrand;
 import com.sodacar.deer.dao.model.VehicleBrandExample;
-import com.sodacar.deer.dao.model.VehicleBrandWithBLOBs;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -11,27 +10,27 @@ public interface VehicleBrandMapper {
 
     int deleteByExample(VehicleBrandExample example);
 
-    int deleteByPrimaryKey(String uuid);
+    int deleteByPrimaryKey(Long id);
 
-    int insert(VehicleBrandWithBLOBs record);
+    int insert(VehicleBrand record);
 
-    int insertSelective(VehicleBrandWithBLOBs record);
+    int insertSelective(VehicleBrand record);
 
-    List<VehicleBrandWithBLOBs> selectByExampleWithBLOBs(VehicleBrandExample example);
+    List<VehicleBrand> selectByExampleWithBLOBs(VehicleBrandExample example);
 
     List<VehicleBrand> selectByExample(VehicleBrandExample example);
 
-    VehicleBrandWithBLOBs selectByPrimaryKey(String uuid);
+    VehicleBrand selectByPrimaryKey(Long id);
 
-    int updateByExampleSelective(@Param("record") VehicleBrandWithBLOBs record, @Param("example") VehicleBrandExample example);
+    int updateByExampleSelective(@Param("record") VehicleBrand record, @Param("example") VehicleBrandExample example);
 
-    int updateByExampleWithBLOBs(@Param("record") VehicleBrandWithBLOBs record, @Param("example") VehicleBrandExample example);
+    int updateByExampleWithBLOBs(@Param("record") VehicleBrand record, @Param("example") VehicleBrandExample example);
 
     int updateByExample(@Param("record") VehicleBrand record, @Param("example") VehicleBrandExample example);
 
-    int updateByPrimaryKeySelective(VehicleBrandWithBLOBs record);
+    int updateByPrimaryKeySelective(VehicleBrand record);
 
-    int updateByPrimaryKeyWithBLOBs(VehicleBrandWithBLOBs record);
+    int updateByPrimaryKeyWithBLOBs(VehicleBrand record);
 
     int updateByPrimaryKey(VehicleBrand record);
 }

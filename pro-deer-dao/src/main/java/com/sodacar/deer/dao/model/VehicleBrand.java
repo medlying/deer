@@ -3,7 +3,7 @@ package com.sodacar.deer.dao.model;
 import org.joda.time.DateTime;
 
 public class VehicleBrand {
-    private String uuid;
+    private Long id;
 
     private String name;
 
@@ -11,38 +11,61 @@ public class VehicleBrand {
 
     private DateTime createdAt;
 
-    private String createdByName;
+    private Long creatorId;
 
-    private String createdByType;
+    private String creatorName;
+
+    private String creatorType;
 
     private DateTime updatedAt;
 
-    private String updatedByName;
+    private Long updaterId;
 
-    private String updatedByType;
+    private String updaterName;
 
-    public VehicleBrand(String uuid, String name, String url, DateTime createdAt, String createdByName, String createdByType, DateTime updatedAt, String updatedByName, String updatedByType) {
-        this.uuid = uuid;
+    private String updaterType;
+
+    private String bid;
+
+    public VehicleBrand(Long id, String name, String url, DateTime createdAt, Long creatorId, String creatorName, String creatorType, DateTime updatedAt, Long updaterId, String updaterName, String updaterType) {
+        this.id = id;
         this.name = name;
         this.url = url;
         this.createdAt = createdAt;
-        this.createdByName = createdByName;
-        this.createdByType = createdByType;
+        this.creatorId = creatorId;
+        this.creatorName = creatorName;
+        this.creatorType = creatorType;
         this.updatedAt = updatedAt;
-        this.updatedByName = updatedByName;
-        this.updatedByType = updatedByType;
+        this.updaterId = updaterId;
+        this.updaterName = updaterName;
+        this.updaterType = updaterType;
+    }
+
+    public VehicleBrand(Long id, String name, String url, DateTime createdAt, Long creatorId, String creatorName, String creatorType, DateTime updatedAt, Long updaterId, String updaterName, String updaterType, String bid) {
+        this.id = id;
+        this.name = name;
+        this.url = url;
+        this.createdAt = createdAt;
+        this.creatorId = creatorId;
+        this.creatorName = creatorName;
+        this.creatorType = creatorType;
+        this.updatedAt = updatedAt;
+        this.updaterId = updaterId;
+        this.updaterName = updaterName;
+        this.updaterType = updaterType;
+        this.bid = bid;
     }
 
     public VehicleBrand() {
         super();
     }
 
-    public String getUuid() {
-        return uuid;
+    public Long getId() {
+        return id;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid == null ? null : uuid.trim();
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -69,20 +92,28 @@ public class VehicleBrand {
         this.createdAt = createdAt;
     }
 
-    public String getCreatedByName() {
-        return createdByName;
+    public Long getCreatorId() {
+        return creatorId;
     }
 
-    public void setCreatedByName(String createdByName) {
-        this.createdByName = createdByName == null ? null : createdByName.trim();
+    public void setCreatorId(Long creatorId) {
+        this.creatorId = creatorId;
     }
 
-    public String getCreatedByType() {
-        return createdByType;
+    public String getCreatorName() {
+        return creatorName;
     }
 
-    public void setCreatedByType(String createdByType) {
-        this.createdByType = createdByType == null ? null : createdByType.trim();
+    public void setCreatorName(String creatorName) {
+        this.creatorName = creatorName == null ? null : creatorName.trim();
+    }
+
+    public String getCreatorType() {
+        return creatorType;
+    }
+
+    public void setCreatorType(String creatorType) {
+        this.creatorType = creatorType == null ? null : creatorType.trim();
     }
 
     public DateTime getUpdatedAt() {
@@ -93,19 +124,35 @@ public class VehicleBrand {
         this.updatedAt = updatedAt;
     }
 
-    public String getUpdatedByName() {
-        return updatedByName;
+    public Long getUpdaterId() {
+        return updaterId;
     }
 
-    public void setUpdatedByName(String updatedByName) {
-        this.updatedByName = updatedByName == null ? null : updatedByName.trim();
+    public void setUpdaterId(Long updaterId) {
+        this.updaterId = updaterId;
     }
 
-    public String getUpdatedByType() {
-        return updatedByType;
+    public String getUpdaterName() {
+        return updaterName;
     }
 
-    public void setUpdatedByType(String updatedByType) {
-        this.updatedByType = updatedByType == null ? null : updatedByType.trim();
+    public void setUpdaterName(String updaterName) {
+        this.updaterName = updaterName == null ? null : updaterName.trim();
+    }
+
+    public String getUpdaterType() {
+        return updaterType;
+    }
+
+    public void setUpdaterType(String updaterType) {
+        this.updaterType = updaterType == null ? null : updaterType.trim();
+    }
+
+    public String getBid() {
+        return bid;
+    }
+
+    public void setBid(String bid) {
+        this.bid = bid == null ? null : bid.trim();
     }
 }

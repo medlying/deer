@@ -2,7 +2,6 @@ package com.sodacar.deer.dao.mapper;
 
 import com.sodacar.deer.dao.model.Factory;
 import com.sodacar.deer.dao.model.FactoryExample;
-import com.sodacar.deer.dao.model.FactoryWithBLOBs;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -11,27 +10,21 @@ public interface FactoryMapper {
 
     int deleteByExample(FactoryExample example);
 
-    int deleteByPrimaryKey(String uuid);
+    int deleteByPrimaryKey(Long id);
 
-    int insert(FactoryWithBLOBs record);
+    int insert(Factory record);
 
-    int insertSelective(FactoryWithBLOBs record);
-
-    List<FactoryWithBLOBs> selectByExampleWithBLOBs(FactoryExample example);
+    int insertSelective(Factory record);
 
     List<Factory> selectByExample(FactoryExample example);
 
-    FactoryWithBLOBs selectByPrimaryKey(String uuid);
+    Factory selectByPrimaryKey(Long id);
 
-    int updateByExampleSelective(@Param("record") FactoryWithBLOBs record, @Param("example") FactoryExample example);
-
-    int updateByExampleWithBLOBs(@Param("record") FactoryWithBLOBs record, @Param("example") FactoryExample example);
+    int updateByExampleSelective(@Param("record") Factory record, @Param("example") FactoryExample example);
 
     int updateByExample(@Param("record") Factory record, @Param("example") FactoryExample example);
 
-    int updateByPrimaryKeySelective(FactoryWithBLOBs record);
-
-    int updateByPrimaryKeyWithBLOBs(FactoryWithBLOBs record);
+    int updateByPrimaryKeySelective(Factory record);
 
     int updateByPrimaryKey(Factory record);
 }

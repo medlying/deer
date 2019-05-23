@@ -3,7 +3,9 @@ package com.sodacar.deer.dao.model;
 import org.joda.time.DateTime;
 
 public class VehicleCheckLog {
-    private String uuid;
+    private Long id;
+
+    private Long deviceId;
 
     private String deviceNumber;
 
@@ -11,29 +13,55 @@ public class VehicleCheckLog {
 
     private DateTime createdAt;
 
-    private String createdByName;
+    private Long creatorId;
 
-    private String createdByType;
+    private String creatorName;
 
-    public VehicleCheckLog(String uuid, String deviceNumber, String status, DateTime createdAt, String createdByName, String createdByType) {
-        this.uuid = uuid;
+    private String creatorType;
+
+    private String info;
+
+    public VehicleCheckLog(Long id, Long deviceId, String deviceNumber, String status, DateTime createdAt, Long creatorId, String creatorName, String creatorType) {
+        this.id = id;
+        this.deviceId = deviceId;
         this.deviceNumber = deviceNumber;
         this.status = status;
         this.createdAt = createdAt;
-        this.createdByName = createdByName;
-        this.createdByType = createdByType;
+        this.creatorId = creatorId;
+        this.creatorName = creatorName;
+        this.creatorType = creatorType;
+    }
+
+    public VehicleCheckLog(Long id, Long deviceId, String deviceNumber, String status, DateTime createdAt, Long creatorId, String creatorName, String creatorType, String info) {
+        this.id = id;
+        this.deviceId = deviceId;
+        this.deviceNumber = deviceNumber;
+        this.status = status;
+        this.createdAt = createdAt;
+        this.creatorId = creatorId;
+        this.creatorName = creatorName;
+        this.creatorType = creatorType;
+        this.info = info;
     }
 
     public VehicleCheckLog() {
         super();
     }
 
-    public String getUuid() {
-        return uuid;
+    public Long getId() {
+        return id;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid == null ? null : uuid.trim();
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(Long deviceId) {
+        this.deviceId = deviceId;
     }
 
     public String getDeviceNumber() {
@@ -60,19 +88,35 @@ public class VehicleCheckLog {
         this.createdAt = createdAt;
     }
 
-    public String getCreatedByName() {
-        return createdByName;
+    public Long getCreatorId() {
+        return creatorId;
     }
 
-    public void setCreatedByName(String createdByName) {
-        this.createdByName = createdByName == null ? null : createdByName.trim();
+    public void setCreatorId(Long creatorId) {
+        this.creatorId = creatorId;
     }
 
-    public String getCreatedByType() {
-        return createdByType;
+    public String getCreatorName() {
+        return creatorName;
     }
 
-    public void setCreatedByType(String createdByType) {
-        this.createdByType = createdByType == null ? null : createdByType.trim();
+    public void setCreatorName(String creatorName) {
+        this.creatorName = creatorName == null ? null : creatorName.trim();
+    }
+
+    public String getCreatorType() {
+        return creatorType;
+    }
+
+    public void setCreatorType(String creatorType) {
+        this.creatorType = creatorType == null ? null : creatorType.trim();
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info == null ? null : info.trim();
     }
 }

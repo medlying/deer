@@ -3,7 +3,9 @@ package com.sodacar.deer.dao.model;
 import org.joda.time.DateTime;
 
 public class Vehicle {
-    private String uuid;
+    private Long id;
+
+    private Long vehicleModelId;
 
     private String vehicleModeName;
 
@@ -11,11 +13,17 @@ public class Vehicle {
 
     private String engineNumber;
 
+    private Long deviceId;
+
     private String deviceNumer;
+
+    private Long factoryId;
 
     private String factoryName;
 
     private String deviceNumber;
+
+    private Long dealerId;
 
     private String dealerName;
 
@@ -31,24 +39,32 @@ public class Vehicle {
 
     private DateTime createdAt;
 
-    private String createdByName;
+    private Long creatorId;
+
+    private String creatorName;
 
     private DateTime updatedAt;
 
-    private String updatedByName;
+    private Long updaterId;
 
-    private String createdByType;
+    private String updaterName;
 
-    private String updatedByType;
+    private String creatorType;
 
-    public Vehicle(String uuid, String vehicleModeName, String vin, String engineNumber, String deviceNumer, String factoryName, String deviceNumber, String dealerName, String bindMobile, String color, String licenseNumber, DateTime productAt, String status, DateTime createdAt, String createdByName, DateTime updatedAt, String updatedByName, String createdByType, String updatedByType) {
-        this.uuid = uuid;
+    private String updaterType;
+
+    public Vehicle(Long id, Long vehicleModelId, String vehicleModeName, String vin, String engineNumber, Long deviceId, String deviceNumer, Long factoryId, String factoryName, String deviceNumber, Long dealerId, String dealerName, String bindMobile, String color, String licenseNumber, DateTime productAt, String status, DateTime createdAt, Long creatorId, String creatorName, DateTime updatedAt, Long updaterId, String updaterName, String creatorType, String updaterType) {
+        this.id = id;
+        this.vehicleModelId = vehicleModelId;
         this.vehicleModeName = vehicleModeName;
         this.vin = vin;
         this.engineNumber = engineNumber;
+        this.deviceId = deviceId;
         this.deviceNumer = deviceNumer;
+        this.factoryId = factoryId;
         this.factoryName = factoryName;
         this.deviceNumber = deviceNumber;
+        this.dealerId = dealerId;
         this.dealerName = dealerName;
         this.bindMobile = bindMobile;
         this.color = color;
@@ -56,23 +72,33 @@ public class Vehicle {
         this.productAt = productAt;
         this.status = status;
         this.createdAt = createdAt;
-        this.createdByName = createdByName;
+        this.creatorId = creatorId;
+        this.creatorName = creatorName;
         this.updatedAt = updatedAt;
-        this.updatedByName = updatedByName;
-        this.createdByType = createdByType;
-        this.updatedByType = updatedByType;
+        this.updaterId = updaterId;
+        this.updaterName = updaterName;
+        this.creatorType = creatorType;
+        this.updaterType = updaterType;
     }
 
     public Vehicle() {
         super();
     }
 
-    public String getUuid() {
-        return uuid;
+    public Long getId() {
+        return id;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid == null ? null : uuid.trim();
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getVehicleModelId() {
+        return vehicleModelId;
+    }
+
+    public void setVehicleModelId(Long vehicleModelId) {
+        this.vehicleModelId = vehicleModelId;
     }
 
     public String getVehicleModeName() {
@@ -99,12 +125,28 @@ public class Vehicle {
         this.engineNumber = engineNumber == null ? null : engineNumber.trim();
     }
 
+    public Long getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(Long deviceId) {
+        this.deviceId = deviceId;
+    }
+
     public String getDeviceNumer() {
         return deviceNumer;
     }
 
     public void setDeviceNumer(String deviceNumer) {
         this.deviceNumer = deviceNumer == null ? null : deviceNumer.trim();
+    }
+
+    public Long getFactoryId() {
+        return factoryId;
+    }
+
+    public void setFactoryId(Long factoryId) {
+        this.factoryId = factoryId;
     }
 
     public String getFactoryName() {
@@ -121,6 +163,14 @@ public class Vehicle {
 
     public void setDeviceNumber(String deviceNumber) {
         this.deviceNumber = deviceNumber == null ? null : deviceNumber.trim();
+    }
+
+    public Long getDealerId() {
+        return dealerId;
+    }
+
+    public void setDealerId(Long dealerId) {
+        this.dealerId = dealerId;
     }
 
     public String getDealerName() {
@@ -179,12 +229,20 @@ public class Vehicle {
         this.createdAt = createdAt;
     }
 
-    public String getCreatedByName() {
-        return createdByName;
+    public Long getCreatorId() {
+        return creatorId;
     }
 
-    public void setCreatedByName(String createdByName) {
-        this.createdByName = createdByName == null ? null : createdByName.trim();
+    public void setCreatorId(Long creatorId) {
+        this.creatorId = creatorId;
+    }
+
+    public String getCreatorName() {
+        return creatorName;
+    }
+
+    public void setCreatorName(String creatorName) {
+        this.creatorName = creatorName == null ? null : creatorName.trim();
     }
 
     public DateTime getUpdatedAt() {
@@ -195,27 +253,35 @@ public class Vehicle {
         this.updatedAt = updatedAt;
     }
 
-    public String getUpdatedByName() {
-        return updatedByName;
+    public Long getUpdaterId() {
+        return updaterId;
     }
 
-    public void setUpdatedByName(String updatedByName) {
-        this.updatedByName = updatedByName == null ? null : updatedByName.trim();
+    public void setUpdaterId(Long updaterId) {
+        this.updaterId = updaterId;
     }
 
-    public String getCreatedByType() {
-        return createdByType;
+    public String getUpdaterName() {
+        return updaterName;
     }
 
-    public void setCreatedByType(String createdByType) {
-        this.createdByType = createdByType == null ? null : createdByType.trim();
+    public void setUpdaterName(String updaterName) {
+        this.updaterName = updaterName == null ? null : updaterName.trim();
     }
 
-    public String getUpdatedByType() {
-        return updatedByType;
+    public String getCreatorType() {
+        return creatorType;
     }
 
-    public void setUpdatedByType(String updatedByType) {
-        this.updatedByType = updatedByType == null ? null : updatedByType.trim();
+    public void setCreatorType(String creatorType) {
+        this.creatorType = creatorType == null ? null : creatorType.trim();
+    }
+
+    public String getUpdaterType() {
+        return updaterType;
+    }
+
+    public void setUpdaterType(String updaterType) {
+        this.updaterType = updaterType == null ? null : updaterType.trim();
     }
 }

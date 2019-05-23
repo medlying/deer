@@ -11,7 +11,7 @@ public interface DeviceAssignDealerLogMapper {
 
     int deleteByExample(DeviceAssignDealerLogExample example);
 
-    int deleteByPrimaryKey(String uuid);
+    int deleteByPrimaryKey(Long id);
 
     int insert(DeviceAssignDealerLogWithBLOBs record);
 
@@ -21,7 +21,7 @@ public interface DeviceAssignDealerLogMapper {
 
     List<DeviceAssignDealerLog> selectByExample(DeviceAssignDealerLogExample example);
 
-    DeviceAssignDealerLogWithBLOBs selectByPrimaryKey(String uuid);
+    DeviceAssignDealerLogWithBLOBs selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") DeviceAssignDealerLogWithBLOBs record, @Param("example") DeviceAssignDealerLogExample example);
 

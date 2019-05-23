@@ -3,7 +3,9 @@ package com.sodacar.deer.dao.model;
 import org.joda.time.DateTime;
 
 public class DeviceAssignDealerLog {
-    private String uuid;
+    private Long id;
+
+    private Long dealerId;
 
     private String dealerName;
 
@@ -11,29 +13,41 @@ public class DeviceAssignDealerLog {
 
     private DateTime createdAt;
 
-    private String createdByName;
+    private Long creatorId;
 
-    private String createdByType;
+    private String creatorName;
 
-    public DeviceAssignDealerLog(String uuid, String dealerName, Boolean status, DateTime createdAt, String createdByName, String createdByType) {
-        this.uuid = uuid;
+    private String creatorType;
+
+    public DeviceAssignDealerLog(Long id, Long dealerId, String dealerName, Boolean status, DateTime createdAt, Long creatorId, String creatorName, String creatorType) {
+        this.id = id;
+        this.dealerId = dealerId;
         this.dealerName = dealerName;
         this.status = status;
         this.createdAt = createdAt;
-        this.createdByName = createdByName;
-        this.createdByType = createdByType;
+        this.creatorId = creatorId;
+        this.creatorName = creatorName;
+        this.creatorType = creatorType;
     }
 
     public DeviceAssignDealerLog() {
         super();
     }
 
-    public String getUuid() {
-        return uuid;
+    public Long getId() {
+        return id;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid == null ? null : uuid.trim();
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getDealerId() {
+        return dealerId;
+    }
+
+    public void setDealerId(Long dealerId) {
+        this.dealerId = dealerId;
     }
 
     public String getDealerName() {
@@ -60,19 +74,27 @@ public class DeviceAssignDealerLog {
         this.createdAt = createdAt;
     }
 
-    public String getCreatedByName() {
-        return createdByName;
+    public Long getCreatorId() {
+        return creatorId;
     }
 
-    public void setCreatedByName(String createdByName) {
-        this.createdByName = createdByName == null ? null : createdByName.trim();
+    public void setCreatorId(Long creatorId) {
+        this.creatorId = creatorId;
     }
 
-    public String getCreatedByType() {
-        return createdByType;
+    public String getCreatorName() {
+        return creatorName;
     }
 
-    public void setCreatedByType(String createdByType) {
-        this.createdByType = createdByType == null ? null : createdByType.trim();
+    public void setCreatorName(String creatorName) {
+        this.creatorName = creatorName == null ? null : creatorName.trim();
+    }
+
+    public String getCreatorType() {
+        return creatorType;
+    }
+
+    public void setCreatorType(String creatorType) {
+        this.creatorType = creatorType == null ? null : creatorType.trim();
     }
 }

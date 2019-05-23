@@ -83,15 +83,15 @@
             domainObjectName 给表对应的 model 起名字
             注意：大小写敏感问题。
          -->
-        <table tableName="DEVICES" domainObjectName="Device" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
-        <table tableName="DEALERS" domainObjectName="Dealer" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
-        <table tableName="DEVICE_ASSIGN_DEALER_LOGS" domainObjectName="DeviceAssignDealerLog" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
-        <table tableName="DEVICE_CHECK_LOGS" domainObjectName="VehicleCheckLog" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
-        <table tableName="FACTORIES" domainObjectName="Factory" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
-        <table tableName="VEHICLE_ASSIGN_DEALER_LOGS" domainObjectName="VehicleAssignDealerLog" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
-        <table tableName="VEHICLE_BRANDS" domainObjectName="VehicleBrand" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
-        <table tableName="VEHICLE_MODELS" domainObjectName="VehicleModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
-        <table tableName="VEHICLES" domainObjectName="Vehicle" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
+        <table tableName="device" domainObjectName="Device" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
+        <table tableName="dealer" domainObjectName="Dealer" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
+        <table tableName="device_assign_dealer_log" domainObjectName="DeviceAssignDealerLog" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
+        <table tableName="device_check_log" domainObjectName="VehicleCheckLog" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
+        <table tableName="factory" domainObjectName="Factory" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
+        <table tableName="vehicle_assign_dealer_log" domainObjectName="VehicleAssignDealerLog" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
+        <table tableName="vehicle_brand" domainObjectName="VehicleBrand" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
+        <table tableName="vehicle_model" domainObjectName="VehicleModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
+        <table tableName="vehicle" domainObjectName="Vehicle" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
     </context>
 
 </generatorConfiguration>

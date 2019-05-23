@@ -11,7 +11,7 @@ public interface VehicleAssignDealerLogMapper {
 
     int deleteByExample(VehicleAssignDealerLogExample example);
 
-    int deleteByPrimaryKey(String uuid);
+    int deleteByPrimaryKey(Long id);
 
     int insert(VehicleAssignDealerLogWithBLOBs record);
 
@@ -21,7 +21,7 @@ public interface VehicleAssignDealerLogMapper {
 
     List<VehicleAssignDealerLog> selectByExample(VehicleAssignDealerLogExample example);
 
-    VehicleAssignDealerLogWithBLOBs selectByPrimaryKey(String uuid);
+    VehicleAssignDealerLogWithBLOBs selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") VehicleAssignDealerLogWithBLOBs record, @Param("example") VehicleAssignDealerLogExample example);
 
