@@ -1,10 +1,11 @@
-package org.mybatis.generator.internal.types;
+package org.mybaties.generator;
 
 import org.joda.time.DateTime;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.JavaTypeResolver;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.config.Context;
+import org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl;
 import org.mybatis.generator.internal.util.StringUtility;
 
 import java.math.BigDecimal;
