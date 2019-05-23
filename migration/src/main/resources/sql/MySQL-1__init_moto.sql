@@ -81,7 +81,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COMMENT = '设备分配';
 
-CREATE INDEX `fk_device_assign_dealer_log_dealer1_idx` ON `moto`.`device_assign_dealer_log` (`dealer_id` ASC) VISIBLE;
+CREATE INDEX `fk_device_assign_dealer_log_dealer1_idx` ON `moto`.`device_assign_dealer_log` (`dealer_id` ASC);
 
 
 -- -----------------------------------------------------
@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `moto`.`device_check_log` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-CREATE INDEX `fk_device_check_log_device1_idx` ON `moto`.`device_check_log` (`device_id` ASC) VISIBLE;
+CREATE INDEX `fk_device_check_log_device1_idx` ON `moto`.`device_check_log` (`device_id` ASC);
 
 
 -- -----------------------------------------------------
@@ -160,13 +160,13 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COMMENT = '车辆';
 
-CREATE INDEX `fk_vehicle_vehicle_model1_idx` ON `moto`.`vehicle` (`vehicle_model_id` ASC) VISIBLE;
+CREATE INDEX `fk_vehicle_vehicle_model1_idx` ON `moto`.`vehicle` (`vehicle_model_id` ASC);
 
-CREATE INDEX `fk_vehicle_factory1_idx` ON `moto`.`vehicle` (`factory_id` ASC) VISIBLE;
+CREATE INDEX `fk_vehicle_factory1_idx` ON `moto`.`vehicle` (`factory_id` ASC);
 
-CREATE INDEX `fk_vehicle_dealer1_idx` ON `moto`.`vehicle` (`dealer_id` ASC) VISIBLE;
+CREATE INDEX `fk_vehicle_dealer1_idx` ON `moto`.`vehicle` (`dealer_id` ASC);
 
-CREATE INDEX `fk_vehicle_device1_idx` ON `moto`.`vehicle` (`device_id` ASC) VISIBLE;
+CREATE INDEX `fk_vehicle_device1_idx` ON `moto`.`vehicle` (`device_id` ASC);
 
 
 -- -----------------------------------------------------
@@ -188,7 +188,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COMMENT = '车辆分配';
 
-CREATE INDEX `fk_vehicle_assign_dealer_log_dealer1_idx` ON `moto`.`vehicle_assign_dealer_log` (`dealer_id` ASC) VISIBLE;
+CREATE INDEX `fk_vehicle_assign_dealer_log_dealer1_idx` ON `moto`.`vehicle_assign_dealer_log` (`dealer_id` ASC);
 
 
 -- -----------------------------------------------------
@@ -236,7 +236,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COMMENT = '车型';
 
-CREATE INDEX `fk_vehicle_model_vehicle_brand_idx` ON `moto`.`vehicle_model` (`brand_id` ASC) VISIBLE;
+CREATE INDEX `fk_vehicle_model_vehicle_brand_idx` ON `moto`.`vehicle_model` (`brand_id` ASC);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
