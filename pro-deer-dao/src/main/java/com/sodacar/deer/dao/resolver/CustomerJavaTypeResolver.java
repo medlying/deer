@@ -1,4 +1,4 @@
-package org.mybaties.generator;
+package com.sodacar.deer.dao.resolver;
 
 import org.joda.time.DateTime;
 import org.mybatis.generator.api.IntrospectedColumn;
@@ -26,7 +26,10 @@ public class CustomerJavaTypeResolver implements JavaTypeResolver {
     protected Properties properties = new Properties();
     protected Context context;
     protected boolean forceBigDecimals;
+    protected boolean useJSR310Types;
     protected Map<Integer, JavaTypeResolverDefaultImpl.JdbcTypeInformation> typeMap = new HashMap();
+    private static final int TIME_WITH_TIMEZONE = 2013;
+    private static final int TIMESTAMP_WITH_TIMEZONE = 2014;
 
     public CustomerJavaTypeResolver() {
         this.typeMap.put(2003, new JavaTypeResolverDefaultImpl.JdbcTypeInformation("ARRAY", new FullyQualifiedJavaType(Object.class.getName())));
@@ -69,6 +72,7 @@ public class CustomerJavaTypeResolver implements JavaTypeResolver {
     public void addConfigurationProperties(Properties properties) {
         this.properties.putAll(properties);
         this.forceBigDecimals = StringUtility.isTrue(properties.getProperty("forceBigDecimals"));
+        this.useJSR310Types = StringUtility.isTrue(properties.getProperty("useJSR310Types"));
     }
 
     @Override
@@ -92,6 +96,48 @@ public class CustomerJavaTypeResolver implements JavaTypeResolver {
             case 2:
             case 3:
                 answer = this.calculateBigDecimalReplacement(column, defaultType);
+                break;
+            case 91:
+                answer = this.calculateDateType(column, defaultType);
+                break;
+            case 92:
+                answer = this.calculateTimeType(column, defaultType);
+                break;
+            case 93:
+                answer = this.calculateTimestampType(column, defaultType);
+        }
+
+        return answer;
+    }
+
+    protected FullyQualifiedJavaType calculateDateType(IntrospectedColumn column, FullyQualifiedJavaType defaultType) {
+        FullyQualifiedJavaType answer;
+        if (this.useJSR310Types) {
+            answer = new FullyQualifiedJavaType("java.time.LocalDate");
+        } else {
+            answer = defaultType;
+        }
+
+        return answer;
+    }
+
+    protected FullyQualifiedJavaType calculateTimeType(IntrospectedColumn column, FullyQualifiedJavaType defaultType) {
+        FullyQualifiedJavaType answer;
+        if (this.useJSR310Types) {
+            answer = new FullyQualifiedJavaType("java.time.LocalTime");
+        } else {
+            answer = defaultType;
+        }
+
+        return answer;
+    }
+
+    protected FullyQualifiedJavaType calculateTimestampType(IntrospectedColumn column, FullyQualifiedJavaType defaultType) {
+        FullyQualifiedJavaType answer;
+        if (this.useJSR310Types) {
+            answer = new FullyQualifiedJavaType("java.time.LocalDateTime");
+        } else {
+            answer = defaultType;
         }
 
         return answer;
