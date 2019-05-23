@@ -5,7 +5,7 @@
 <!-- 配置生成器 -->
 <generatorConfiguration>
 
-    <properties resource="db.properties"></properties>
+    <properties resource="db-generator.properties"></properties>
 
     <!--id:必选，上下文id，用于在生成错误时提示-->
     <context id="mysql" targetRuntime="MyBatis3">
