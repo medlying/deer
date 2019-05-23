@@ -18,7 +18,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.sodacar.risk.Application</mainClass>
+                    <mainClass>com.sodacar.deer.risk.Application</mainClass>
                     <finalName>${artifactId}-${version}</finalName>
                 </configuration>
             </plugin>

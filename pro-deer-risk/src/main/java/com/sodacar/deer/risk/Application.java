@@ -1,4 +1,4 @@
-package com.sodacar.risk;
+package com.sodacar.deer.risk;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.sodacar.task;
+package com.sodacar.deer.task;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

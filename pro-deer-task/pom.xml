@@ -19,7 +19,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.sodacar.task.Application</mainClass>
+                    <mainClass>com.sodacar.deer.task.Application</mainClass>
                     <finalName>${artifactId}-${version}</finalName>
                 </configuration>
             </plugin>

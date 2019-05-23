@@ -1,6 +1,15 @@
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:44444/moto?useUnicode=true&characterEncoding=UTF-8
     username: root
     password: password
-    url: jdbc:mysql://127.0.0.1:44444/moto?useUnicode=true&characterEncoding=UTF-8
+    type: com.alibaba.druid.pool.DruidDataSource
+mybatis:
+  mapper-locations: classpath:com/sodacar/deer/dao/mapper/xml/*.xml
+  type-aliases-package: com.sodacar.deer.dao.model
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
