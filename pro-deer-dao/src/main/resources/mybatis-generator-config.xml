@@ -13,6 +13,8 @@
         <!-- 生成的Java文件的编码 -->
         <property name="javaFileEncoding" value="UTF-8"/>
 
+        <plugin type="com.sodacar.commons.plugin.PaginationMysqlPlugin"></plugin>
+
         <!-- 对注释进行控制 -->
         <commentGenerator>
             <!-- suppressDate是去掉生成日期那行注释 -->

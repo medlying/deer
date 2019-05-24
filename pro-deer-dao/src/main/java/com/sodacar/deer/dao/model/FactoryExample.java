@@ -11,6 +11,10 @@ public class FactoryExample {
 
     protected List<Criteria> oredCriteria;
 
+    protected int limitStart = -1;
+
+    protected int limitEnd = -1;
+
     public FactoryExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
@@ -62,6 +66,22 @@ public class FactoryExample {
         oredCriteria.clear();
         orderByClause = null;
         distinct = false;
+    }
+
+    public void setLimitStart(int limitStart) {
+        this.limitStart=limitStart;
+    }
+
+    public int getLimitStart() {
+        return limitStart;
+    }
+
+    public void setLimitEnd(int limitEnd) {
+        this.limitEnd=limitEnd;
+    }
+
+    public int getLimitEnd() {
+        return limitEnd;
     }
 
     protected abstract static class GeneratedCriteria {

@@ -6,7 +6,7 @@ spring:
     password: password
     type: com.alibaba.druid.pool.DruidDataSource
 mybatis:
-  mapper-locations: classpath:com/sodacar/deer/dao/mapper/xml/*.xml
+  mapper-locations: classpath*:com/sodacar/deer/dao/mapper/xml/*Mapper.xml
   type-aliases-package: com.sodacar.deer.dao.model
 pagehelper:
   helperDialect: mysql
