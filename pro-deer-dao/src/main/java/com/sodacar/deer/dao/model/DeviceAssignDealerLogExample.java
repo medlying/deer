@@ -11,9 +11,9 @@ public class DeviceAssignDealerLogExample {
 
     protected List<Criteria> oredCriteria;
 
-    protected int start = -1;
+    protected long start = -1;
 
-    protected int limit = -1;
+    protected long limit = -1;
 
     public DeviceAssignDealerLogExample() {
         oredCriteria = new ArrayList<Criteria>();
@@ -68,19 +68,19 @@ public class DeviceAssignDealerLogExample {
         distinct = false;
     }
 
-    public void setStart(int start) {
+    public void setStart(long start) {
         this.start=start;
     }
 
-    public int getStart() {
+    public long getStart() {
         return start;
     }
 
-    public void setLimit(int limit) {
+    public void setLimit(long limit) {
         this.limit=limit;
     }
 
-    public int getLimit() {
+    public long getLimit() {
         return limit;
     }
 

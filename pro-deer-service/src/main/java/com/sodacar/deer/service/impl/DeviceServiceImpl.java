@@ -1,5 +1,6 @@
 package com.sodacar.deer.service.impl;
 
+import com.sodacar.commons.page.Pageable;
 import com.sodacar.deer.dao.mapper.DeviceMapper;
 import com.sodacar.deer.dao.model.Device;
 import com.sodacar.deer.dao.model.DeviceExample;
@@ -21,11 +22,13 @@ public class DeviceServiceImpl implements DeviceService {
     DeviceMapper deviceMapper;
 
     @Override
-    public List<Device> list(int page, int pageLimit) {
+    public Pageable<Device> list() {
         DeviceExample deviceExample = new DeviceExample();
-        deviceExample.setStart(page > 0 ? (page - 1) * pageLimit : 0);
-        deviceExample.setLimit(pageLimit);
         deviceExample.createCriteria().andCardNumberEqualTo("1234");
-        return deviceMapper.selectByExample(deviceExample);
+        return new Pageable<>(deviceMapper.countByExample(deviceExample), (page, limit) -> {
+            deviceExample.setStart(page);
+            deviceExample.setLimit(limit);
+            return deviceMapper.selectByExample(deviceExample);
+        });
     }
 }

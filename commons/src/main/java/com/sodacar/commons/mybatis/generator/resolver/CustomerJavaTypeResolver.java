@@ -1,4 +1,4 @@
-package com.sodacar.commons.resolver;
+package com.sodacar.commons.mybatis.generator.resolver;
 
 import org.joda.time.DateTime;
 import org.mybatis.generator.api.IntrospectedColumn;

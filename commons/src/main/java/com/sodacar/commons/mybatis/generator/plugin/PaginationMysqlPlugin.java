@@ -1,5 +1,6 @@
-package com.sodacar.commons.plugin;
+package com.sodacar.commons.mybatis.generator.plugin;
 
+import org.checkerframework.checker.signature.qual.FullyQualifiedName;
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.PluginAdapter;
@@ -8,11 +9,13 @@ import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.java.JavaVisibility;
 import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.Parameter;
+import org.mybatis.generator.api.dom.java.PrimitiveTypeWrapper;
 import org.mybatis.generator.api.dom.java.TopLevelClass;
 import org.mybatis.generator.api.dom.xml.Attribute;
 import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 
+import javax.lang.model.type.PrimitiveType;
 import java.util.List;
 
 /**
@@ -40,10 +43,11 @@ public class PaginationMysqlPlugin extends PluginAdapter {
     }
 
     private void addLimit(TopLevelClass topLevelClass, IntrospectedTable introspectedTable, String name) {
+        FullyQualifiedJavaType longJavaType = new FullyQualifiedJavaType("long");
         CommentGenerator commentGenerator = context.getCommentGenerator();
         Field field = new Field();
         field.setVisibility(JavaVisibility.PROTECTED);
-        field.setType(FullyQualifiedJavaType.getIntInstance());
+        field.setType(longJavaType);
         field.setName(name);
         field.setInitializationString("-1");
         commentGenerator.addFieldComment(field, introspectedTable);
@@ -53,13 +57,13 @@ public class PaginationMysqlPlugin extends PluginAdapter {
         Method method = new Method();
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setName("set" + camel);
-        method.addParameter(new Parameter(FullyQualifiedJavaType.getIntInstance(), name));
+        method.addParameter(new Parameter(longJavaType, name));
         method.addBodyLine("this." + name + "=" + name + ";");
         commentGenerator.addGeneralMethodComment(method, introspectedTable);
         topLevelClass.addMethod(method);
         method = new Method();
         method.setVisibility(JavaVisibility.PUBLIC);
-        method.setReturnType(FullyQualifiedJavaType.getIntInstance());
+        method.setReturnType(longJavaType);
         method.setName("get" + camel);
         method.addBodyLine("return " + name + ";");
         commentGenerator.addGeneralMethodComment(method, introspectedTable);

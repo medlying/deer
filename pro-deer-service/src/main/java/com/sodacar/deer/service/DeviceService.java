@@ -1,5 +1,6 @@
 package com.sodacar.deer.service;
 
+import com.sodacar.commons.page.Pageable;
 import com.sodacar.deer.dao.model.Device;
 
 import java.util.List;
@@ -13,6 +14,7 @@ public interface DeviceService {
 
     /**
      * 列表
+     * @return
      */
-    List<Device> list(int page, int pageLimit);
+    Pageable<Device> list();
 }
