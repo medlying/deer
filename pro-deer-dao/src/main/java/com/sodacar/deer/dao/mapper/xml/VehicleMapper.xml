@@ -2,32 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sodacar.deer.dao.mapper.VehicleMapper">
   <resultMap id="BaseResultMap" type="com.sodacar.deer.dao.model.Vehicle">
-    <constructor>
-      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="vehicle_model_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="vehicle_mode_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="vin" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="engine_number" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="factory_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="factory_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="device_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="device_number" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="dealer_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="dealer_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="bind_mobile" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="color" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="license_number" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="product_at" javaType="org.joda.time.DateTime" jdbcType="TIMESTAMP" />
-      <arg column="status" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="created_at" javaType="org.joda.time.DateTime" jdbcType="TIMESTAMP" />
-      <arg column="creator_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="creator_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="updated_at" javaType="org.joda.time.DateTime" jdbcType="TIMESTAMP" />
-      <arg column="updater_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="updater_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="creator_type" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="updater_type" javaType="java.lang.String" jdbcType="VARCHAR" />
-    </constructor>
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="vehicle_model_id" jdbcType="BIGINT" property="vehicleModelId" />
+    <result column="vehicle_mode_name" jdbcType="VARCHAR" property="vehicleModeName" />
+    <result column="vin" jdbcType="VARCHAR" property="vin" />
+    <result column="engine_number" jdbcType="VARCHAR" property="engineNumber" />
+    <result column="factory_id" jdbcType="BIGINT" property="factoryId" />
+    <result column="factory_name" jdbcType="VARCHAR" property="factoryName" />
+    <result column="device_id" jdbcType="BIGINT" property="deviceId" />
+    <result column="device_number" jdbcType="VARCHAR" property="deviceNumber" />
+    <result column="dealer_id" jdbcType="BIGINT" property="dealerId" />
+    <result column="dealer_name" jdbcType="VARCHAR" property="dealerName" />
+    <result column="bind_mobile" jdbcType="VARCHAR" property="bindMobile" />
+    <result column="color" jdbcType="VARCHAR" property="color" />
+    <result column="license_number" jdbcType="VARCHAR" property="licenseNumber" />
+    <result column="product_at" jdbcType="TIMESTAMP" property="productAt" typeHandler="com.sodacar.deer.dao.handler.DateTimeTypeHandler" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" typeHandler="com.sodacar.deer.dao.handler.DateTimeTypeHandler" />
+    <result column="creator_id" jdbcType="BIGINT" property="creatorId" />
+    <result column="creator_name" jdbcType="VARCHAR" property="creatorName" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" typeHandler="com.sodacar.deer.dao.handler.DateTimeTypeHandler" />
+    <result column="updater_id" jdbcType="BIGINT" property="updaterId" />
+    <result column="updater_name" jdbcType="VARCHAR" property="updaterName" />
+    <result column="creator_type" jdbcType="VARCHAR" property="creatorType" />
+    <result column="updater_type" jdbcType="VARCHAR" property="updaterType" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -49,6 +47,63 @@
                   and ${criterion.condition}
                   <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.productAtCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler} and #{criterion.secondValue,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.createdAtCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler} and #{criterion.secondValue,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.updatedAtCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler} and #{criterion.secondValue,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler}
                   </foreach>
                 </when>
               </choose>
@@ -78,6 +133,63 @@
                   and ${criterion.condition}
                   <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.productAtCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler} and #{criterion.secondValue,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.createdAtCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler} and #{criterion.secondValue,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.updatedAtCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler} and #{criterion.secondValue,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler}
                   </foreach>
                 </when>
               </choose>
@@ -133,1554 +245,17 @@
       factory_name, device_id, device_number, 
       dealer_id, dealer_name, bind_mobile, 
       color, license_number, product_at, 
-      status, created_at, creator_id, 
-      creator_name, updated_at, updater_id, 
-      updater_name, creator_type, updater_type
-      )
-    values (#{id,jdbcType=BIGINT}, #{vehicleModelId,jdbcType=BIGINT}, #{vehicleModeName,jdbcType=VARCHAR}, 
-      #{vin,jdbcType=VARCHAR}, #{engineNumber,jdbcType=VARCHAR}, #{factoryId,jdbcType=BIGINT}, 
-      #{factoryName,jdbcType=VARCHAR}, #{deviceId,jdbcType=BIGINT}, #{deviceNumber,jdbcType=VARCHAR}, 
-      #{dealerId,jdbcType=BIGINT}, #{dealerName,jdbcType=VARCHAR}, #{bindMobile,jdbcType=VARCHAR}, 
-      #{color,jdbcType=VARCHAR}, #{licenseNumber,jdbcType=VARCHAR}, #{productAt,jdbcType=TIMESTAMP}, 
-      #{status,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{creatorId,jdbcType=BIGINT}, 
-      #{creatorName,jdbcType=VARCHAR}, #{updatedAt,jdbcType=TIMESTAMP}, #{updaterId,jdbcType=BIGINT}, 
-      #{updaterName,jdbcType=VARCHAR}, #{creatorType,jdbcType=VARCHAR}, #{updaterType,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.sodacar.deer.dao.model.Vehicle">
-    insert into vehicle
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="vehicleModelId != null">
-        vehicle_model_id,
-      </if>
-      <if test="vehicleModeName != null">
-        vehicle_mode_name,
-      </if>
-      <if test="vin != null">
-        vin,
-      </if>
-      <if test="engineNumber != null">
-        engine_number,
-      </if>
-      <if test="factoryId != null">
-        factory_id,
-      </if>
-      <if test="factoryName != null">
-        factory_name,
-      </if>
-      <if test="deviceId != null">
-        device_id,
-      </if>
-      <if test="deviceNumber != null">
-        device_number,
-      </if>
-      <if test="dealerId != null">
-        dealer_id,
-      </if>
-      <if test="dealerName != null">
-        dealer_name,
-      </if>
-      <if test="bindMobile != null">
-        bind_mobile,
-      </if>
-      <if test="color != null">
-        color,
-      </if>
-      <if test="licenseNumber != null">
-        license_number,
-      </if>
-      <if test="productAt != null">
-        product_at,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="createdAt != null">
-        created_at,
-      </if>
-      <if test="creatorId != null">
-        creator_id,
-      </if>
-      <if test="creatorName != null">
-        creator_name,
-      </if>
-      <if test="updatedAt != null">
-        updated_at,
-      </if>
-      <if test="updaterId != null">
-        updater_id,
-      </if>
-      <if test="updaterName != null">
-        updater_name,
-      </if>
-      <if test="creatorType != null">
-        creator_type,
-      </if>
-      <if test="updaterType != null">
-        updater_type,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="vehicleModelId != null">
-        #{vehicleModelId,jdbcType=BIGINT},
-      </if>
-      <if test="vehicleModeName != null">
-        #{vehicleModeName,jdbcType=VARCHAR},
-      </if>
-      <if test="vin != null">
-        #{vin,jdbcType=VARCHAR},
-      </if>
-      <if test="engineNumber != null">
-        #{engineNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="factoryId != null">
-        #{factoryId,jdbcType=BIGINT},
-      </if>
-      <if test="factoryName != null">
-        #{factoryName,jdbcType=VARCHAR},
-      </if>
-      <if test="deviceId != null">
-        #{deviceId,jdbcType=BIGINT},
-      </if>
-      <if test="deviceNumber != null">
-        #{deviceNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="dealerId != null">
-        #{dealerId,jdbcType=BIGINT},
-      </if>
-      <if test="dealerName != null">
-        #{dealerName,jdbcType=VARCHAR},
-      </if>
-      <if test="bindMobile != null">
-        #{bindMobile,jdbcType=VARCHAR},
-      </if>
-      <if test="color != null">
-        #{color,jdbcType=VARCHAR},
-      </if>
-      <if test="licenseNumber != null">
-        #{licenseNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="productAt != null">
-        #{productAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="createdAt != null">
-        #{createdAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="creatorId != null">
-        #{creatorId,jdbcType=BIGINT},
-      </if>
-      <if test="creatorName != null">
-        #{creatorName,jdbcType=VARCHAR},
-      </if>
-      <if test="updatedAt != null">
-        #{updatedAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updaterId != null">
-        #{updaterId,jdbcType=BIGINT},
-      </if>
-      <if test="updaterName != null">
-        #{updaterName,jdbcType=VARCHAR},
-      </if>
-      <if test="creatorType != null">
-        #{creatorType,jdbcType=VARCHAR},
-      </if>
-      <if test="updaterType != null">
-        #{updaterType,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.sodacar.deer.dao.model.VehicleExample" resultType="java.lang.Long">
-    select count(*) from vehicle
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update vehicle
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=BIGINT},
-      </if>
-      <if test="record.vehicleModelId != null">
-        vehicle_model_id = #{record.vehicleModelId,jdbcType=BIGINT},
-      </if>
-      <if test="record.vehicleModeName != null">
-        vehicle_mode_name = #{record.vehicleModeName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.vin != null">
-        vin = #{record.vin,jdbcType=VARCHAR},
-      </if>
-      <if test="record.engineNumber != null">
-        engine_number = #{record.engineNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="record.factoryId != null">
-        factory_id = #{record.factoryId,jdbcType=BIGINT},
-      </if>
-      <if test="record.factoryName != null">
-        factory_name = #{record.factoryName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.deviceId != null">
-        device_id = #{record.deviceId,jdbcType=BIGINT},
-      </if>
-      <if test="record.deviceNumber != null">
-        device_number = #{record.deviceNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="record.dealerId != null">
-        dealer_id = #{record.dealerId,jdbcType=BIGINT},
-      </if>
-      <if test="record.dealerName != null">
-        dealer_name = #{record.dealerName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.bindMobile != null">
-        bind_mobile = #{record.bindMobile,jdbcType=VARCHAR},
-      </if>
-      <if test="record.color != null">
-        color = #{record.color,jdbcType=VARCHAR},
-      </if>
-      <if test="record.licenseNumber != null">
-        license_number = #{record.licenseNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="record.productAt != null">
-        product_at = #{record.productAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.status != null">
-        status = #{record.status,jdbcType=VARCHAR},
-      </if>
-      <if test="record.createdAt != null">
-        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.creatorId != null">
-        creator_id = #{record.creatorId,jdbcType=BIGINT},
-      </if>
-      <if test="record.creatorName != null">
-        creator_name = #{record.creatorName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.updatedAt != null">
-        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.updaterId != null">
-        updater_id = #{record.updaterId,jdbcType=BIGINT},
-      </if>
-      <if test="record.updaterName != null">
-        updater_name = #{record.updaterName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.creatorType != null">
-        creator_type = #{record.creatorType,jdbcType=VARCHAR},
-      </if>
-      <if test="record.updaterType != null">
-        updater_type = #{record.updaterType,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update vehicle
-    set id = #{record.id,jdbcType=BIGINT},
-      vehicle_model_id = #{record.vehicleModelId,jdbcType=BIGINT},
-      vehicle_mode_name = #{record.vehicleModeName,jdbcType=VARCHAR},
-      vin = #{record.vin,jdbcType=VARCHAR},
-      engine_number = #{record.engineNumber,jdbcType=VARCHAR},
-      factory_id = #{record.factoryId,jdbcType=BIGINT},
-      factory_name = #{record.factoryName,jdbcType=VARCHAR},
-      device_id = #{record.deviceId,jdbcType=BIGINT},
-      device_number = #{record.deviceNumber,jdbcType=VARCHAR},
-      dealer_id = #{record.dealerId,jdbcType=BIGINT},
-      dealer_name = #{record.dealerName,jdbcType=VARCHAR},
-      bind_mobile = #{record.bindMobile,jdbcType=VARCHAR},
-      color = #{record.color,jdbcType=VARCHAR},
-      license_number = #{record.licenseNumber,jdbcType=VARCHAR},
-      product_at = #{record.productAt,jdbcType=TIMESTAMP},
-      status = #{record.status,jdbcType=VARCHAR},
-      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
-      creator_id = #{record.creatorId,jdbcType=BIGINT},
-      creator_name = #{record.creatorName,jdbcType=VARCHAR},
-      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
-      updater_id = #{record.updaterId,jdbcType=BIGINT},
-      updater_name = #{record.updaterName,jdbcType=VARCHAR},
-      creator_type = #{record.creatorType,jdbcType=VARCHAR},
-      updater_type = #{record.updaterType,jdbcType=VARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.sodacar.deer.dao.model.Vehicle">
-    update vehicle
-    <set>
-      <if test="vehicleModelId != null">
-        vehicle_model_id = #{vehicleModelId,jdbcType=BIGINT},
-      </if>
-      <if test="vehicleModeName != null">
-        vehicle_mode_name = #{vehicleModeName,jdbcType=VARCHAR},
-      </if>
-      <if test="vin != null">
-        vin = #{vin,jdbcType=VARCHAR},
-      </if>
-      <if test="engineNumber != null">
-        engine_number = #{engineNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="factoryId != null">
-        factory_id = #{factoryId,jdbcType=BIGINT},
-      </if>
-      <if test="factoryName != null">
-        factory_name = #{factoryName,jdbcType=VARCHAR},
-      </if>
-      <if test="deviceId != null">
-        device_id = #{deviceId,jdbcType=BIGINT},
-      </if>
-      <if test="deviceNumber != null">
-        device_number = #{deviceNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="dealerId != null">
-        dealer_id = #{dealerId,jdbcType=BIGINT},
-      </if>
-      <if test="dealerName != null">
-        dealer_name = #{dealerName,jdbcType=VARCHAR},
-      </if>
-      <if test="bindMobile != null">
-        bind_mobile = #{bindMobile,jdbcType=VARCHAR},
-      </if>
-      <if test="color != null">
-        color = #{color,jdbcType=VARCHAR},
-      </if>
-      <if test="licenseNumber != null">
-        license_number = #{licenseNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="productAt != null">
-        product_at = #{productAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="createdAt != null">
-        created_at = #{createdAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="creatorId != null">
-        creator_id = #{creatorId,jdbcType=BIGINT},
-      </if>
-      <if test="creatorName != null">
-        creator_name = #{creatorName,jdbcType=VARCHAR},
-      </if>
-      <if test="updatedAt != null">
-        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updaterId != null">
-        updater_id = #{updaterId,jdbcType=BIGINT},
-      </if>
-      <if test="updaterName != null">
-        updater_name = #{updaterName,jdbcType=VARCHAR},
-      </if>
-      <if test="creatorType != null">
-        creator_type = #{creatorType,jdbcType=VARCHAR},
-      </if>
-      <if test="updaterType != null">
-        updater_type = #{updaterType,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.sodacar.deer.dao.model.Vehicle">
-    update vehicle
-    set vehicle_model_id = #{vehicleModelId,jdbcType=BIGINT},
-      vehicle_mode_name = #{vehicleModeName,jdbcType=VARCHAR},
-      vin = #{vin,jdbcType=VARCHAR},
-      engine_number = #{engineNumber,jdbcType=VARCHAR},
-      factory_id = #{factoryId,jdbcType=BIGINT},
-      factory_name = #{factoryName,jdbcType=VARCHAR},
-      device_id = #{deviceId,jdbcType=BIGINT},
-      device_number = #{deviceNumber,jdbcType=VARCHAR},
-      dealer_id = #{dealerId,jdbcType=BIGINT},
-      dealer_name = #{dealerName,jdbcType=VARCHAR},
-      bind_mobile = #{bindMobile,jdbcType=VARCHAR},
-      color = #{color,jdbcType=VARCHAR},
-      license_number = #{licenseNumber,jdbcType=VARCHAR},
-      product_at = #{productAt,jdbcType=TIMESTAMP},
-      status = #{status,jdbcType=VARCHAR},
-      created_at = #{createdAt,jdbcType=TIMESTAMP},
-      creator_id = #{creatorId,jdbcType=BIGINT},
-      creator_name = #{creatorName,jdbcType=VARCHAR},
-      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
-      updater_id = #{updaterId,jdbcType=BIGINT},
-      updater_name = #{updaterName,jdbcType=VARCHAR},
-      creator_type = #{creatorType,jdbcType=VARCHAR},
-      updater_type = #{updaterType,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <resultMap id="BaseResultMap" type="com.sodacar.deer.dao.model.Vehicle">
-    <constructor>
-      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="vehicle_model_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="vehicle_mode_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="vin" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="engine_number" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="factory_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="factory_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="device_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="device_number" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="dealer_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="dealer_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="bind_mobile" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="color" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="license_number" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="product_at" javaType="org.joda.time.DateTime" jdbcType="TIMESTAMP" />
-      <arg column="status" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="created_at" javaType="org.joda.time.DateTime" jdbcType="TIMESTAMP" />
-      <arg column="creator_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="creator_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="updated_at" javaType="org.joda.time.DateTime" jdbcType="TIMESTAMP" />
-      <arg column="updater_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="updater_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="creator_type" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="updater_type" javaType="java.lang.String" jdbcType="VARCHAR" />
-    </constructor>
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    id, vehicle_model_id, vehicle_mode_name, vin, engine_number, factory_id, factory_name, 
-    device_id, device_number, dealer_id, dealer_name, bind_mobile, color, license_number, 
-    product_at, status, created_at, creator_id, creator_name, updated_at, updater_id, 
-    updater_name, creator_type, updater_type
-  </sql>
-  <select id="selectByExample" parameterType="com.sodacar.deer.dao.model.VehicleExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    'true' as QUERYID,
-    <include refid="Base_Column_List" />
-    from vehicle
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from vehicle
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from vehicle
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.sodacar.deer.dao.model.VehicleExample">
-    delete from vehicle
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.sodacar.deer.dao.model.Vehicle">
-    insert into vehicle (id, vehicle_model_id, vehicle_mode_name, 
-      vin, engine_number, factory_id, 
-      factory_name, device_id, device_number, 
-      dealer_id, dealer_name, bind_mobile, 
-      color, license_number, product_at, 
-      status, created_at, creator_id, 
-      creator_name, updated_at, updater_id, 
-      updater_name, creator_type, updater_type
-      )
-    values (#{id,jdbcType=BIGINT}, #{vehicleModelId,jdbcType=BIGINT}, #{vehicleModeName,jdbcType=VARCHAR}, 
-      #{vin,jdbcType=VARCHAR}, #{engineNumber,jdbcType=VARCHAR}, #{factoryId,jdbcType=BIGINT}, 
-      #{factoryName,jdbcType=VARCHAR}, #{deviceId,jdbcType=BIGINT}, #{deviceNumber,jdbcType=VARCHAR}, 
-      #{dealerId,jdbcType=BIGINT}, #{dealerName,jdbcType=VARCHAR}, #{bindMobile,jdbcType=VARCHAR}, 
-      #{color,jdbcType=VARCHAR}, #{licenseNumber,jdbcType=VARCHAR}, #{productAt,jdbcType=TIMESTAMP}, 
-      #{status,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{creatorId,jdbcType=BIGINT}, 
-      #{creatorName,jdbcType=VARCHAR}, #{updatedAt,jdbcType=TIMESTAMP}, #{updaterId,jdbcType=BIGINT}, 
-      #{updaterName,jdbcType=VARCHAR}, #{creatorType,jdbcType=VARCHAR}, #{updaterType,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.sodacar.deer.dao.model.Vehicle">
-    insert into vehicle
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="vehicleModelId != null">
-        vehicle_model_id,
-      </if>
-      <if test="vehicleModeName != null">
-        vehicle_mode_name,
-      </if>
-      <if test="vin != null">
-        vin,
-      </if>
-      <if test="engineNumber != null">
-        engine_number,
-      </if>
-      <if test="factoryId != null">
-        factory_id,
-      </if>
-      <if test="factoryName != null">
-        factory_name,
-      </if>
-      <if test="deviceId != null">
-        device_id,
-      </if>
-      <if test="deviceNumber != null">
-        device_number,
-      </if>
-      <if test="dealerId != null">
-        dealer_id,
-      </if>
-      <if test="dealerName != null">
-        dealer_name,
-      </if>
-      <if test="bindMobile != null">
-        bind_mobile,
-      </if>
-      <if test="color != null">
-        color,
-      </if>
-      <if test="licenseNumber != null">
-        license_number,
-      </if>
-      <if test="productAt != null">
-        product_at,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="createdAt != null">
-        created_at,
-      </if>
-      <if test="creatorId != null">
-        creator_id,
-      </if>
-      <if test="creatorName != null">
-        creator_name,
-      </if>
-      <if test="updatedAt != null">
-        updated_at,
-      </if>
-      <if test="updaterId != null">
-        updater_id,
-      </if>
-      <if test="updaterName != null">
-        updater_name,
-      </if>
-      <if test="creatorType != null">
-        creator_type,
-      </if>
-      <if test="updaterType != null">
-        updater_type,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="vehicleModelId != null">
-        #{vehicleModelId,jdbcType=BIGINT},
-      </if>
-      <if test="vehicleModeName != null">
-        #{vehicleModeName,jdbcType=VARCHAR},
-      </if>
-      <if test="vin != null">
-        #{vin,jdbcType=VARCHAR},
-      </if>
-      <if test="engineNumber != null">
-        #{engineNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="factoryId != null">
-        #{factoryId,jdbcType=BIGINT},
-      </if>
-      <if test="factoryName != null">
-        #{factoryName,jdbcType=VARCHAR},
-      </if>
-      <if test="deviceId != null">
-        #{deviceId,jdbcType=BIGINT},
-      </if>
-      <if test="deviceNumber != null">
-        #{deviceNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="dealerId != null">
-        #{dealerId,jdbcType=BIGINT},
-      </if>
-      <if test="dealerName != null">
-        #{dealerName,jdbcType=VARCHAR},
-      </if>
-      <if test="bindMobile != null">
-        #{bindMobile,jdbcType=VARCHAR},
-      </if>
-      <if test="color != null">
-        #{color,jdbcType=VARCHAR},
-      </if>
-      <if test="licenseNumber != null">
-        #{licenseNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="productAt != null">
-        #{productAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="createdAt != null">
-        #{createdAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="creatorId != null">
-        #{creatorId,jdbcType=BIGINT},
-      </if>
-      <if test="creatorName != null">
-        #{creatorName,jdbcType=VARCHAR},
-      </if>
-      <if test="updatedAt != null">
-        #{updatedAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updaterId != null">
-        #{updaterId,jdbcType=BIGINT},
-      </if>
-      <if test="updaterName != null">
-        #{updaterName,jdbcType=VARCHAR},
-      </if>
-      <if test="creatorType != null">
-        #{creatorType,jdbcType=VARCHAR},
-      </if>
-      <if test="updaterType != null">
-        #{updaterType,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.sodacar.deer.dao.model.VehicleExample" resultType="java.lang.Long">
-    select count(*) from vehicle
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update vehicle
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=BIGINT},
-      </if>
-      <if test="record.vehicleModelId != null">
-        vehicle_model_id = #{record.vehicleModelId,jdbcType=BIGINT},
-      </if>
-      <if test="record.vehicleModeName != null">
-        vehicle_mode_name = #{record.vehicleModeName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.vin != null">
-        vin = #{record.vin,jdbcType=VARCHAR},
-      </if>
-      <if test="record.engineNumber != null">
-        engine_number = #{record.engineNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="record.factoryId != null">
-        factory_id = #{record.factoryId,jdbcType=BIGINT},
-      </if>
-      <if test="record.factoryName != null">
-        factory_name = #{record.factoryName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.deviceId != null">
-        device_id = #{record.deviceId,jdbcType=BIGINT},
-      </if>
-      <if test="record.deviceNumber != null">
-        device_number = #{record.deviceNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="record.dealerId != null">
-        dealer_id = #{record.dealerId,jdbcType=BIGINT},
-      </if>
-      <if test="record.dealerName != null">
-        dealer_name = #{record.dealerName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.bindMobile != null">
-        bind_mobile = #{record.bindMobile,jdbcType=VARCHAR},
-      </if>
-      <if test="record.color != null">
-        color = #{record.color,jdbcType=VARCHAR},
-      </if>
-      <if test="record.licenseNumber != null">
-        license_number = #{record.licenseNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="record.productAt != null">
-        product_at = #{record.productAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.status != null">
-        status = #{record.status,jdbcType=VARCHAR},
-      </if>
-      <if test="record.createdAt != null">
-        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.creatorId != null">
-        creator_id = #{record.creatorId,jdbcType=BIGINT},
-      </if>
-      <if test="record.creatorName != null">
-        creator_name = #{record.creatorName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.updatedAt != null">
-        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.updaterId != null">
-        updater_id = #{record.updaterId,jdbcType=BIGINT},
-      </if>
-      <if test="record.updaterName != null">
-        updater_name = #{record.updaterName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.creatorType != null">
-        creator_type = #{record.creatorType,jdbcType=VARCHAR},
-      </if>
-      <if test="record.updaterType != null">
-        updater_type = #{record.updaterType,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update vehicle
-    set id = #{record.id,jdbcType=BIGINT},
-      vehicle_model_id = #{record.vehicleModelId,jdbcType=BIGINT},
-      vehicle_mode_name = #{record.vehicleModeName,jdbcType=VARCHAR},
-      vin = #{record.vin,jdbcType=VARCHAR},
-      engine_number = #{record.engineNumber,jdbcType=VARCHAR},
-      factory_id = #{record.factoryId,jdbcType=BIGINT},
-      factory_name = #{record.factoryName,jdbcType=VARCHAR},
-      device_id = #{record.deviceId,jdbcType=BIGINT},
-      device_number = #{record.deviceNumber,jdbcType=VARCHAR},
-      dealer_id = #{record.dealerId,jdbcType=BIGINT},
-      dealer_name = #{record.dealerName,jdbcType=VARCHAR},
-      bind_mobile = #{record.bindMobile,jdbcType=VARCHAR},
-      color = #{record.color,jdbcType=VARCHAR},
-      license_number = #{record.licenseNumber,jdbcType=VARCHAR},
-      product_at = #{record.productAt,jdbcType=TIMESTAMP},
-      status = #{record.status,jdbcType=VARCHAR},
-      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
-      creator_id = #{record.creatorId,jdbcType=BIGINT},
-      creator_name = #{record.creatorName,jdbcType=VARCHAR},
-      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
-      updater_id = #{record.updaterId,jdbcType=BIGINT},
-      updater_name = #{record.updaterName,jdbcType=VARCHAR},
-      creator_type = #{record.creatorType,jdbcType=VARCHAR},
-      updater_type = #{record.updaterType,jdbcType=VARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.sodacar.deer.dao.model.Vehicle">
-    update vehicle
-    <set>
-      <if test="vehicleModelId != null">
-        vehicle_model_id = #{vehicleModelId,jdbcType=BIGINT},
-      </if>
-      <if test="vehicleModeName != null">
-        vehicle_mode_name = #{vehicleModeName,jdbcType=VARCHAR},
-      </if>
-      <if test="vin != null">
-        vin = #{vin,jdbcType=VARCHAR},
-      </if>
-      <if test="engineNumber != null">
-        engine_number = #{engineNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="factoryId != null">
-        factory_id = #{factoryId,jdbcType=BIGINT},
-      </if>
-      <if test="factoryName != null">
-        factory_name = #{factoryName,jdbcType=VARCHAR},
-      </if>
-      <if test="deviceId != null">
-        device_id = #{deviceId,jdbcType=BIGINT},
-      </if>
-      <if test="deviceNumber != null">
-        device_number = #{deviceNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="dealerId != null">
-        dealer_id = #{dealerId,jdbcType=BIGINT},
-      </if>
-      <if test="dealerName != null">
-        dealer_name = #{dealerName,jdbcType=VARCHAR},
-      </if>
-      <if test="bindMobile != null">
-        bind_mobile = #{bindMobile,jdbcType=VARCHAR},
-      </if>
-      <if test="color != null">
-        color = #{color,jdbcType=VARCHAR},
-      </if>
-      <if test="licenseNumber != null">
-        license_number = #{licenseNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="productAt != null">
-        product_at = #{productAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="createdAt != null">
-        created_at = #{createdAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="creatorId != null">
-        creator_id = #{creatorId,jdbcType=BIGINT},
-      </if>
-      <if test="creatorName != null">
-        creator_name = #{creatorName,jdbcType=VARCHAR},
-      </if>
-      <if test="updatedAt != null">
-        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updaterId != null">
-        updater_id = #{updaterId,jdbcType=BIGINT},
-      </if>
-      <if test="updaterName != null">
-        updater_name = #{updaterName,jdbcType=VARCHAR},
-      </if>
-      <if test="creatorType != null">
-        creator_type = #{creatorType,jdbcType=VARCHAR},
-      </if>
-      <if test="updaterType != null">
-        updater_type = #{updaterType,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.sodacar.deer.dao.model.Vehicle">
-    update vehicle
-    set vehicle_model_id = #{vehicleModelId,jdbcType=BIGINT},
-      vehicle_mode_name = #{vehicleModeName,jdbcType=VARCHAR},
-      vin = #{vin,jdbcType=VARCHAR},
-      engine_number = #{engineNumber,jdbcType=VARCHAR},
-      factory_id = #{factoryId,jdbcType=BIGINT},
-      factory_name = #{factoryName,jdbcType=VARCHAR},
-      device_id = #{deviceId,jdbcType=BIGINT},
-      device_number = #{deviceNumber,jdbcType=VARCHAR},
-      dealer_id = #{dealerId,jdbcType=BIGINT},
-      dealer_name = #{dealerName,jdbcType=VARCHAR},
-      bind_mobile = #{bindMobile,jdbcType=VARCHAR},
-      color = #{color,jdbcType=VARCHAR},
-      license_number = #{licenseNumber,jdbcType=VARCHAR},
-      product_at = #{productAt,jdbcType=TIMESTAMP},
-      status = #{status,jdbcType=VARCHAR},
-      created_at = #{createdAt,jdbcType=TIMESTAMP},
-      creator_id = #{creatorId,jdbcType=BIGINT},
-      creator_name = #{creatorName,jdbcType=VARCHAR},
-      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
-      updater_id = #{updaterId,jdbcType=BIGINT},
-      updater_name = #{updaterName,jdbcType=VARCHAR},
-      creator_type = #{creatorType,jdbcType=VARCHAR},
-      updater_type = #{updaterType,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <resultMap id="BaseResultMap" type="com.sodacar.deer.dao.model.Vehicle">
-    <constructor>
-      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="vehicle_model_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="vehicle_mode_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="vin" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="engine_number" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="factory_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="factory_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="device_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="device_number" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="dealer_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="dealer_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="bind_mobile" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="color" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="license_number" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="product_at" javaType="org.joda.time.DateTime" jdbcType="TIMESTAMP" />
-      <arg column="status" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="created_at" javaType="org.joda.time.DateTime" jdbcType="TIMESTAMP" />
-      <arg column="creator_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="creator_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="updated_at" javaType="org.joda.time.DateTime" jdbcType="TIMESTAMP" />
-      <arg column="updater_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="updater_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="creator_type" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="updater_type" javaType="java.lang.String" jdbcType="VARCHAR" />
-    </constructor>
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    id, vehicle_model_id, vehicle_mode_name, vin, engine_number, factory_id, factory_name, 
-    device_id, device_number, dealer_id, dealer_name, bind_mobile, color, license_number, 
-    product_at, status, created_at, creator_id, creator_name, updated_at, updater_id, 
-    updater_name, creator_type, updater_type
-  </sql>
-  <select id="selectByExample" parameterType="com.sodacar.deer.dao.model.VehicleExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    'true' as QUERYID,
-    <include refid="Base_Column_List" />
-    from vehicle
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from vehicle
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from vehicle
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.sodacar.deer.dao.model.VehicleExample">
-    delete from vehicle
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.sodacar.deer.dao.model.Vehicle">
-    insert into vehicle (id, vehicle_model_id, vehicle_mode_name, 
-      vin, engine_number, factory_id, 
-      factory_name, device_id, device_number, 
-      dealer_id, dealer_name, bind_mobile, 
-      color, license_number, product_at, 
-      status, created_at, creator_id, 
-      creator_name, updated_at, updater_id, 
-      updater_name, creator_type, updater_type
-      )
-    values (#{id,jdbcType=BIGINT}, #{vehicleModelId,jdbcType=BIGINT}, #{vehicleModeName,jdbcType=VARCHAR}, 
-      #{vin,jdbcType=VARCHAR}, #{engineNumber,jdbcType=VARCHAR}, #{factoryId,jdbcType=BIGINT}, 
-      #{factoryName,jdbcType=VARCHAR}, #{deviceId,jdbcType=BIGINT}, #{deviceNumber,jdbcType=VARCHAR}, 
-      #{dealerId,jdbcType=BIGINT}, #{dealerName,jdbcType=VARCHAR}, #{bindMobile,jdbcType=VARCHAR}, 
-      #{color,jdbcType=VARCHAR}, #{licenseNumber,jdbcType=VARCHAR}, #{productAt,jdbcType=TIMESTAMP}, 
-      #{status,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{creatorId,jdbcType=BIGINT}, 
-      #{creatorName,jdbcType=VARCHAR}, #{updatedAt,jdbcType=TIMESTAMP}, #{updaterId,jdbcType=BIGINT}, 
-      #{updaterName,jdbcType=VARCHAR}, #{creatorType,jdbcType=VARCHAR}, #{updaterType,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.sodacar.deer.dao.model.Vehicle">
-    insert into vehicle
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="vehicleModelId != null">
-        vehicle_model_id,
-      </if>
-      <if test="vehicleModeName != null">
-        vehicle_mode_name,
-      </if>
-      <if test="vin != null">
-        vin,
-      </if>
-      <if test="engineNumber != null">
-        engine_number,
-      </if>
-      <if test="factoryId != null">
-        factory_id,
-      </if>
-      <if test="factoryName != null">
-        factory_name,
-      </if>
-      <if test="deviceId != null">
-        device_id,
-      </if>
-      <if test="deviceNumber != null">
-        device_number,
-      </if>
-      <if test="dealerId != null">
-        dealer_id,
-      </if>
-      <if test="dealerName != null">
-        dealer_name,
-      </if>
-      <if test="bindMobile != null">
-        bind_mobile,
-      </if>
-      <if test="color != null">
-        color,
-      </if>
-      <if test="licenseNumber != null">
-        license_number,
-      </if>
-      <if test="productAt != null">
-        product_at,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="createdAt != null">
-        created_at,
-      </if>
-      <if test="creatorId != null">
-        creator_id,
-      </if>
-      <if test="creatorName != null">
-        creator_name,
-      </if>
-      <if test="updatedAt != null">
-        updated_at,
-      </if>
-      <if test="updaterId != null">
-        updater_id,
-      </if>
-      <if test="updaterName != null">
-        updater_name,
-      </if>
-      <if test="creatorType != null">
-        creator_type,
-      </if>
-      <if test="updaterType != null">
-        updater_type,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="vehicleModelId != null">
-        #{vehicleModelId,jdbcType=BIGINT},
-      </if>
-      <if test="vehicleModeName != null">
-        #{vehicleModeName,jdbcType=VARCHAR},
-      </if>
-      <if test="vin != null">
-        #{vin,jdbcType=VARCHAR},
-      </if>
-      <if test="engineNumber != null">
-        #{engineNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="factoryId != null">
-        #{factoryId,jdbcType=BIGINT},
-      </if>
-      <if test="factoryName != null">
-        #{factoryName,jdbcType=VARCHAR},
-      </if>
-      <if test="deviceId != null">
-        #{deviceId,jdbcType=BIGINT},
-      </if>
-      <if test="deviceNumber != null">
-        #{deviceNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="dealerId != null">
-        #{dealerId,jdbcType=BIGINT},
-      </if>
-      <if test="dealerName != null">
-        #{dealerName,jdbcType=VARCHAR},
-      </if>
-      <if test="bindMobile != null">
-        #{bindMobile,jdbcType=VARCHAR},
-      </if>
-      <if test="color != null">
-        #{color,jdbcType=VARCHAR},
-      </if>
-      <if test="licenseNumber != null">
-        #{licenseNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="productAt != null">
-        #{productAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="createdAt != null">
-        #{createdAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="creatorId != null">
-        #{creatorId,jdbcType=BIGINT},
-      </if>
-      <if test="creatorName != null">
-        #{creatorName,jdbcType=VARCHAR},
-      </if>
-      <if test="updatedAt != null">
-        #{updatedAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updaterId != null">
-        #{updaterId,jdbcType=BIGINT},
-      </if>
-      <if test="updaterName != null">
-        #{updaterName,jdbcType=VARCHAR},
-      </if>
-      <if test="creatorType != null">
-        #{creatorType,jdbcType=VARCHAR},
-      </if>
-      <if test="updaterType != null">
-        #{updaterType,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.sodacar.deer.dao.model.VehicleExample" resultType="java.lang.Long">
-    select count(*) from vehicle
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update vehicle
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=BIGINT},
-      </if>
-      <if test="record.vehicleModelId != null">
-        vehicle_model_id = #{record.vehicleModelId,jdbcType=BIGINT},
-      </if>
-      <if test="record.vehicleModeName != null">
-        vehicle_mode_name = #{record.vehicleModeName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.vin != null">
-        vin = #{record.vin,jdbcType=VARCHAR},
-      </if>
-      <if test="record.engineNumber != null">
-        engine_number = #{record.engineNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="record.factoryId != null">
-        factory_id = #{record.factoryId,jdbcType=BIGINT},
-      </if>
-      <if test="record.factoryName != null">
-        factory_name = #{record.factoryName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.deviceId != null">
-        device_id = #{record.deviceId,jdbcType=BIGINT},
-      </if>
-      <if test="record.deviceNumber != null">
-        device_number = #{record.deviceNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="record.dealerId != null">
-        dealer_id = #{record.dealerId,jdbcType=BIGINT},
-      </if>
-      <if test="record.dealerName != null">
-        dealer_name = #{record.dealerName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.bindMobile != null">
-        bind_mobile = #{record.bindMobile,jdbcType=VARCHAR},
-      </if>
-      <if test="record.color != null">
-        color = #{record.color,jdbcType=VARCHAR},
-      </if>
-      <if test="record.licenseNumber != null">
-        license_number = #{record.licenseNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="record.productAt != null">
-        product_at = #{record.productAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.status != null">
-        status = #{record.status,jdbcType=VARCHAR},
-      </if>
-      <if test="record.createdAt != null">
-        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.creatorId != null">
-        creator_id = #{record.creatorId,jdbcType=BIGINT},
-      </if>
-      <if test="record.creatorName != null">
-        creator_name = #{record.creatorName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.updatedAt != null">
-        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.updaterId != null">
-        updater_id = #{record.updaterId,jdbcType=BIGINT},
-      </if>
-      <if test="record.updaterName != null">
-        updater_name = #{record.updaterName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.creatorType != null">
-        creator_type = #{record.creatorType,jdbcType=VARCHAR},
-      </if>
-      <if test="record.updaterType != null">
-        updater_type = #{record.updaterType,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update vehicle
-    set id = #{record.id,jdbcType=BIGINT},
-      vehicle_model_id = #{record.vehicleModelId,jdbcType=BIGINT},
-      vehicle_mode_name = #{record.vehicleModeName,jdbcType=VARCHAR},
-      vin = #{record.vin,jdbcType=VARCHAR},
-      engine_number = #{record.engineNumber,jdbcType=VARCHAR},
-      factory_id = #{record.factoryId,jdbcType=BIGINT},
-      factory_name = #{record.factoryName,jdbcType=VARCHAR},
-      device_id = #{record.deviceId,jdbcType=BIGINT},
-      device_number = #{record.deviceNumber,jdbcType=VARCHAR},
-      dealer_id = #{record.dealerId,jdbcType=BIGINT},
-      dealer_name = #{record.dealerName,jdbcType=VARCHAR},
-      bind_mobile = #{record.bindMobile,jdbcType=VARCHAR},
-      color = #{record.color,jdbcType=VARCHAR},
-      license_number = #{record.licenseNumber,jdbcType=VARCHAR},
-      product_at = #{record.productAt,jdbcType=TIMESTAMP},
-      status = #{record.status,jdbcType=VARCHAR},
-      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
-      creator_id = #{record.creatorId,jdbcType=BIGINT},
-      creator_name = #{record.creatorName,jdbcType=VARCHAR},
-      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
-      updater_id = #{record.updaterId,jdbcType=BIGINT},
-      updater_name = #{record.updaterName,jdbcType=VARCHAR},
-      creator_type = #{record.creatorType,jdbcType=VARCHAR},
-      updater_type = #{record.updaterType,jdbcType=VARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.sodacar.deer.dao.model.Vehicle">
-    update vehicle
-    <set>
-      <if test="vehicleModelId != null">
-        vehicle_model_id = #{vehicleModelId,jdbcType=BIGINT},
-      </if>
-      <if test="vehicleModeName != null">
-        vehicle_mode_name = #{vehicleModeName,jdbcType=VARCHAR},
-      </if>
-      <if test="vin != null">
-        vin = #{vin,jdbcType=VARCHAR},
-      </if>
-      <if test="engineNumber != null">
-        engine_number = #{engineNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="factoryId != null">
-        factory_id = #{factoryId,jdbcType=BIGINT},
-      </if>
-      <if test="factoryName != null">
-        factory_name = #{factoryName,jdbcType=VARCHAR},
-      </if>
-      <if test="deviceId != null">
-        device_id = #{deviceId,jdbcType=BIGINT},
-      </if>
-      <if test="deviceNumber != null">
-        device_number = #{deviceNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="dealerId != null">
-        dealer_id = #{dealerId,jdbcType=BIGINT},
-      </if>
-      <if test="dealerName != null">
-        dealer_name = #{dealerName,jdbcType=VARCHAR},
-      </if>
-      <if test="bindMobile != null">
-        bind_mobile = #{bindMobile,jdbcType=VARCHAR},
-      </if>
-      <if test="color != null">
-        color = #{color,jdbcType=VARCHAR},
-      </if>
-      <if test="licenseNumber != null">
-        license_number = #{licenseNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="productAt != null">
-        product_at = #{productAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="createdAt != null">
-        created_at = #{createdAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="creatorId != null">
-        creator_id = #{creatorId,jdbcType=BIGINT},
-      </if>
-      <if test="creatorName != null">
-        creator_name = #{creatorName,jdbcType=VARCHAR},
-      </if>
-      <if test="updatedAt != null">
-        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updaterId != null">
-        updater_id = #{updaterId,jdbcType=BIGINT},
-      </if>
-      <if test="updaterName != null">
-        updater_name = #{updaterName,jdbcType=VARCHAR},
-      </if>
-      <if test="creatorType != null">
-        creator_type = #{creatorType,jdbcType=VARCHAR},
-      </if>
-      <if test="updaterType != null">
-        updater_type = #{updaterType,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.sodacar.deer.dao.model.Vehicle">
-    update vehicle
-    set vehicle_model_id = #{vehicleModelId,jdbcType=BIGINT},
-      vehicle_mode_name = #{vehicleModeName,jdbcType=VARCHAR},
-      vin = #{vin,jdbcType=VARCHAR},
-      engine_number = #{engineNumber,jdbcType=VARCHAR},
-      factory_id = #{factoryId,jdbcType=BIGINT},
-      factory_name = #{factoryName,jdbcType=VARCHAR},
-      device_id = #{deviceId,jdbcType=BIGINT},
-      device_number = #{deviceNumber,jdbcType=VARCHAR},
-      dealer_id = #{dealerId,jdbcType=BIGINT},
-      dealer_name = #{dealerName,jdbcType=VARCHAR},
-      bind_mobile = #{bindMobile,jdbcType=VARCHAR},
-      color = #{color,jdbcType=VARCHAR},
-      license_number = #{licenseNumber,jdbcType=VARCHAR},
-      product_at = #{productAt,jdbcType=TIMESTAMP},
-      status = #{status,jdbcType=VARCHAR},
-      created_at = #{createdAt,jdbcType=TIMESTAMP},
-      creator_id = #{creatorId,jdbcType=BIGINT},
-      creator_name = #{creatorName,jdbcType=VARCHAR},
-      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
-      updater_id = #{updaterId,jdbcType=BIGINT},
-      updater_name = #{updaterName,jdbcType=VARCHAR},
-      creator_type = #{creatorType,jdbcType=VARCHAR},
-      updater_type = #{updaterType,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <resultMap id="BaseResultMap" type="com.sodacar.deer.dao.model.Vehicle">
-    <constructor>
-      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="vehicle_model_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="vehicle_mode_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="vin" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="engine_number" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="device_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="device_numer" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="factory_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="factory_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="device_number" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="dealer_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="dealer_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="bind_mobile" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="color" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="license_number" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="product_at" javaType="org.joda.time.DateTime" jdbcType="TIMESTAMP" />
-      <arg column="status" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="created_at" javaType="org.joda.time.DateTime" jdbcType="TIMESTAMP" />
-      <arg column="creator_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="creator_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="updated_at" javaType="org.joda.time.DateTime" jdbcType="TIMESTAMP" />
-      <arg column="updater_id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="updater_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="creator_type" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="updater_type" javaType="java.lang.String" jdbcType="VARCHAR" />
-    </constructor>
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    id, vehicle_model_id, vehicle_mode_name, vin, engine_number, device_id, device_numer, 
-    factory_id, factory_name, device_number, dealer_id, dealer_name, bind_mobile, color, 
-    license_number, product_at, status, created_at, creator_id, creator_name, updated_at, 
-    updater_id, updater_name, creator_type, updater_type
-  </sql>
-  <select id="selectByExample" parameterType="com.sodacar.deer.dao.model.VehicleExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    'true' as QUERYID,
-    <include refid="Base_Column_List" />
-    from vehicle
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from vehicle
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from vehicle
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.sodacar.deer.dao.model.VehicleExample">
-    delete from vehicle
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.sodacar.deer.dao.model.Vehicle">
-    insert into vehicle (id, vehicle_model_id, vehicle_mode_name, 
-      vin, engine_number, device_id, 
-      device_numer, factory_id, factory_name, 
-      device_number, dealer_id, dealer_name, 
-      bind_mobile, color, license_number, 
-      product_at, status, created_at, 
+      status, created_at, 
       creator_id, creator_name, updated_at, 
       updater_id, updater_name, creator_type, 
       updater_type)
     values (#{id,jdbcType=BIGINT}, #{vehicleModelId,jdbcType=BIGINT}, #{vehicleModeName,jdbcType=VARCHAR}, 
-      #{vin,jdbcType=VARCHAR}, #{engineNumber,jdbcType=VARCHAR}, #{deviceId,jdbcType=BIGINT}, 
-      #{deviceNumer,jdbcType=VARCHAR}, #{factoryId,jdbcType=BIGINT}, #{factoryName,jdbcType=VARCHAR}, 
-      #{deviceNumber,jdbcType=VARCHAR}, #{dealerId,jdbcType=BIGINT}, #{dealerName,jdbcType=VARCHAR}, 
-      #{bindMobile,jdbcType=VARCHAR}, #{color,jdbcType=VARCHAR}, #{licenseNumber,jdbcType=VARCHAR}, 
-      #{productAt,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
-      #{creatorId,jdbcType=BIGINT}, #{creatorName,jdbcType=VARCHAR}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{vin,jdbcType=VARCHAR}, #{engineNumber,jdbcType=VARCHAR}, #{factoryId,jdbcType=BIGINT}, 
+      #{factoryName,jdbcType=VARCHAR}, #{deviceId,jdbcType=BIGINT}, #{deviceNumber,jdbcType=VARCHAR}, 
+      #{dealerId,jdbcType=BIGINT}, #{dealerName,jdbcType=VARCHAR}, #{bindMobile,jdbcType=VARCHAR}, 
+      #{color,jdbcType=VARCHAR}, #{licenseNumber,jdbcType=VARCHAR}, #{productAt,jdbcType=TIMESTAMP,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler}, 
+      #{status,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler}, 
+      #{creatorId,jdbcType=BIGINT}, #{creatorName,jdbcType=VARCHAR}, #{updatedAt,jdbcType=TIMESTAMP,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler}, 
       #{updaterId,jdbcType=BIGINT}, #{updaterName,jdbcType=VARCHAR}, #{creatorType,jdbcType=VARCHAR}, 
       #{updaterType,jdbcType=VARCHAR})
   </insert>
@@ -1702,17 +277,14 @@
       <if test="engineNumber != null">
         engine_number,
       </if>
-      <if test="deviceId != null">
-        device_id,
-      </if>
-      <if test="deviceNumer != null">
-        device_numer,
-      </if>
       <if test="factoryId != null">
         factory_id,
       </if>
       <if test="factoryName != null">
         factory_name,
+      </if>
+      <if test="deviceId != null">
+        device_id,
       </if>
       <if test="deviceNumber != null">
         device_number,
@@ -1779,17 +351,14 @@
       <if test="engineNumber != null">
         #{engineNumber,jdbcType=VARCHAR},
       </if>
-      <if test="deviceId != null">
-        #{deviceId,jdbcType=BIGINT},
-      </if>
-      <if test="deviceNumer != null">
-        #{deviceNumer,jdbcType=VARCHAR},
-      </if>
       <if test="factoryId != null">
         #{factoryId,jdbcType=BIGINT},
       </if>
       <if test="factoryName != null">
         #{factoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceId != null">
+        #{deviceId,jdbcType=BIGINT},
       </if>
       <if test="deviceNumber != null">
         #{deviceNumber,jdbcType=VARCHAR},
@@ -1810,13 +379,13 @@
         #{licenseNumber,jdbcType=VARCHAR},
       </if>
       <if test="productAt != null">
-        #{productAt,jdbcType=TIMESTAMP},
+        #{productAt,jdbcType=TIMESTAMP,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler},
       </if>
       <if test="status != null">
         #{status,jdbcType=VARCHAR},
       </if>
       <if test="createdAt != null">
-        #{createdAt,jdbcType=TIMESTAMP},
+        #{createdAt,jdbcType=TIMESTAMP,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler},
       </if>
       <if test="creatorId != null">
         #{creatorId,jdbcType=BIGINT},
@@ -1825,7 +394,7 @@
         #{creatorName,jdbcType=VARCHAR},
       </if>
       <if test="updatedAt != null">
-        #{updatedAt,jdbcType=TIMESTAMP},
+        #{updatedAt,jdbcType=TIMESTAMP,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler},
       </if>
       <if test="updaterId != null">
         #{updaterId,jdbcType=BIGINT},
@@ -1865,17 +434,14 @@
       <if test="record.engineNumber != null">
         engine_number = #{record.engineNumber,jdbcType=VARCHAR},
       </if>
-      <if test="record.deviceId != null">
-        device_id = #{record.deviceId,jdbcType=BIGINT},
-      </if>
-      <if test="record.deviceNumer != null">
-        device_numer = #{record.deviceNumer,jdbcType=VARCHAR},
-      </if>
       <if test="record.factoryId != null">
         factory_id = #{record.factoryId,jdbcType=BIGINT},
       </if>
       <if test="record.factoryName != null">
         factory_name = #{record.factoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceId != null">
+        device_id = #{record.deviceId,jdbcType=BIGINT},
       </if>
       <if test="record.deviceNumber != null">
         device_number = #{record.deviceNumber,jdbcType=VARCHAR},
@@ -1896,13 +462,13 @@
         license_number = #{record.licenseNumber,jdbcType=VARCHAR},
       </if>
       <if test="record.productAt != null">
-        product_at = #{record.productAt,jdbcType=TIMESTAMP},
+        product_at = #{record.productAt,jdbcType=TIMESTAMP,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler},
       </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=VARCHAR},
       </if>
       <if test="record.createdAt != null">
-        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+        created_at = #{record.createdAt,jdbcType=TIMESTAMP,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler},
       </if>
       <if test="record.creatorId != null">
         creator_id = #{record.creatorId,jdbcType=BIGINT},
@@ -1911,7 +477,7 @@
         creator_name = #{record.creatorName,jdbcType=VARCHAR},
       </if>
       <if test="record.updatedAt != null">
-        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler},
       </if>
       <if test="record.updaterId != null">
         updater_id = #{record.updaterId,jdbcType=BIGINT},
@@ -1937,22 +503,21 @@
       vehicle_mode_name = #{record.vehicleModeName,jdbcType=VARCHAR},
       vin = #{record.vin,jdbcType=VARCHAR},
       engine_number = #{record.engineNumber,jdbcType=VARCHAR},
-      device_id = #{record.deviceId,jdbcType=BIGINT},
-      device_numer = #{record.deviceNumer,jdbcType=VARCHAR},
       factory_id = #{record.factoryId,jdbcType=BIGINT},
       factory_name = #{record.factoryName,jdbcType=VARCHAR},
+      device_id = #{record.deviceId,jdbcType=BIGINT},
       device_number = #{record.deviceNumber,jdbcType=VARCHAR},
       dealer_id = #{record.dealerId,jdbcType=BIGINT},
       dealer_name = #{record.dealerName,jdbcType=VARCHAR},
       bind_mobile = #{record.bindMobile,jdbcType=VARCHAR},
       color = #{record.color,jdbcType=VARCHAR},
       license_number = #{record.licenseNumber,jdbcType=VARCHAR},
-      product_at = #{record.productAt,jdbcType=TIMESTAMP},
+      product_at = #{record.productAt,jdbcType=TIMESTAMP,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler},
       status = #{record.status,jdbcType=VARCHAR},
-      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler},
       creator_id = #{record.creatorId,jdbcType=BIGINT},
       creator_name = #{record.creatorName,jdbcType=VARCHAR},
-      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler},
       updater_id = #{record.updaterId,jdbcType=BIGINT},
       updater_name = #{record.updaterName,jdbcType=VARCHAR},
       creator_type = #{record.creatorType,jdbcType=VARCHAR},
@@ -1976,17 +541,14 @@
       <if test="engineNumber != null">
         engine_number = #{engineNumber,jdbcType=VARCHAR},
       </if>
-      <if test="deviceId != null">
-        device_id = #{deviceId,jdbcType=BIGINT},
-      </if>
-      <if test="deviceNumer != null">
-        device_numer = #{deviceNumer,jdbcType=VARCHAR},
-      </if>
       <if test="factoryId != null">
         factory_id = #{factoryId,jdbcType=BIGINT},
       </if>
       <if test="factoryName != null">
         factory_name = #{factoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceId != null">
+        device_id = #{deviceId,jdbcType=BIGINT},
       </if>
       <if test="deviceNumber != null">
         device_number = #{deviceNumber,jdbcType=VARCHAR},
@@ -2007,13 +569,13 @@
         license_number = #{licenseNumber,jdbcType=VARCHAR},
       </if>
       <if test="productAt != null">
-        product_at = #{productAt,jdbcType=TIMESTAMP},
+        product_at = #{productAt,jdbcType=TIMESTAMP,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=VARCHAR},
       </if>
       <if test="createdAt != null">
-        created_at = #{createdAt,jdbcType=TIMESTAMP},
+        created_at = #{createdAt,jdbcType=TIMESTAMP,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler},
       </if>
       <if test="creatorId != null">
         creator_id = #{creatorId,jdbcType=BIGINT},
@@ -2022,7 +584,7 @@
         creator_name = #{creatorName,jdbcType=VARCHAR},
       </if>
       <if test="updatedAt != null">
-        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler},
       </if>
       <if test="updaterId != null">
         updater_id = #{updaterId,jdbcType=BIGINT},
@@ -2045,22 +607,21 @@
       vehicle_mode_name = #{vehicleModeName,jdbcType=VARCHAR},
       vin = #{vin,jdbcType=VARCHAR},
       engine_number = #{engineNumber,jdbcType=VARCHAR},
-      device_id = #{deviceId,jdbcType=BIGINT},
-      device_numer = #{deviceNumer,jdbcType=VARCHAR},
       factory_id = #{factoryId,jdbcType=BIGINT},
       factory_name = #{factoryName,jdbcType=VARCHAR},
+      device_id = #{deviceId,jdbcType=BIGINT},
       device_number = #{deviceNumber,jdbcType=VARCHAR},
       dealer_id = #{dealerId,jdbcType=BIGINT},
       dealer_name = #{dealerName,jdbcType=VARCHAR},
       bind_mobile = #{bindMobile,jdbcType=VARCHAR},
       color = #{color,jdbcType=VARCHAR},
       license_number = #{licenseNumber,jdbcType=VARCHAR},
-      product_at = #{productAt,jdbcType=TIMESTAMP},
+      product_at = #{productAt,jdbcType=TIMESTAMP,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler},
       status = #{status,jdbcType=VARCHAR},
-      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      created_at = #{createdAt,jdbcType=TIMESTAMP,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler},
       creator_id = #{creatorId,jdbcType=BIGINT},
       creator_name = #{creatorName,jdbcType=VARCHAR},
-      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP,typeHandler=com.sodacar.deer.dao.handler.DateTimeTypeHandler},
       updater_id = #{updaterId,jdbcType=BIGINT},
       updater_name = #{updaterName,jdbcType=VARCHAR},
       creator_type = #{creatorType,jdbcType=VARCHAR},

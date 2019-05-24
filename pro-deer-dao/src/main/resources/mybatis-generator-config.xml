@@ -49,11 +49,11 @@
             <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
             <property name="enableSubPackages" value="true"/>
             <!-- 是否对model添加 构造函数 -->
-            <property name="constructorBased" value="true"/>
+<!--            <property name="constructorBased" value="false"/>-->
             <!-- 是否对类CHAR类型的列的数据进行trim操作 -->
             <property name="trimStrings" value="true"/>
             <!-- 建立的Model对象是否 不可改变  即生成的Model对象不会有 setter方法，只有构造方法 -->
-            <property name="immutable" value="false"/>
+<!--            <property name="immutable" value="false"/>-->
         </javaModelGenerator>
 
         <!-- 生成SQL map的XML文件生成器，
@@ -85,15 +85,40 @@
             domainObjectName 给表对应的 model 起名字
             注意：大小写敏感问题。
          -->
-        <table tableName="device" domainObjectName="Device" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
-        <table tableName="dealer" domainObjectName="Dealer" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
-        <table tableName="device_assign_dealer_log" domainObjectName="DeviceAssignDealerLog" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
-        <table tableName="device_check_log" domainObjectName="VehicleCheckLog" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
-        <table tableName="factory" domainObjectName="Factory" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
-        <table tableName="vehicle_assign_dealer_log" domainObjectName="VehicleAssignDealerLog" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
-        <table tableName="vehicle_brand" domainObjectName="VehicleBrand" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
-        <table tableName="vehicle_model" domainObjectName="VehicleModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
-        <table tableName="vehicle" domainObjectName="Vehicle" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
+        <table tableName="device" domainObjectName="Device" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
+            <columnOverride column="created_at" typeHandler="com.sodacar.deer.dao.handler.DateTimeTypeHandler" />
+            <columnOverride column="updated_at" typeHandler="com.sodacar.deer.dao.handler.DateTimeTypeHandler" />
+        </table>
+        <table tableName="dealer" domainObjectName="Dealer" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
+            <columnOverride column="created_at" typeHandler="com.sodacar.deer.dao.handler.DateTimeTypeHandler" />
+            <columnOverride column="updated_at" typeHandler="com.sodacar.deer.dao.handler.DateTimeTypeHandler" />
+        </table>
+        <table tableName="device_assign_dealer_log" domainObjectName="DeviceAssignDealerLog" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
+            <columnOverride column="created_at" typeHandler="com.sodacar.deer.dao.handler.DateTimeTypeHandler" />
+        </table>
+        <table tableName="device_check_log" domainObjectName="VehicleCheckLog" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
+            <columnOverride column="created_at" typeHandler="com.sodacar.deer.dao.handler.DateTimeTypeHandler" />
+        </table>
+        <table tableName="factory" domainObjectName="Factory" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
+            <columnOverride column="created_at" typeHandler="com.sodacar.deer.dao.handler.DateTimeTypeHandler" />
+            <columnOverride column="updated_at" typeHandler="com.sodacar.deer.dao.handler.DateTimeTypeHandler" />
+        </table>
+        <table tableName="vehicle_assign_dealer_log" domainObjectName="VehicleAssignDealerLog" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
+            <columnOverride column="created_at" typeHandler="com.sodacar.deer.dao.handler.DateTimeTypeHandler" />
+        </table>
+        <table tableName="vehicle_brand" domainObjectName="VehicleBrand" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
+            <columnOverride column="created_at" typeHandler="com.sodacar.deer.dao.handler.DateTimeTypeHandler" />
+            <columnOverride column="updated_at" typeHandler="com.sodacar.deer.dao.handler.DateTimeTypeHandler" />
+        </table>
+        <table tableName="vehicle_model" domainObjectName="VehicleModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
+            <columnOverride column="created_at" typeHandler="com.sodacar.deer.dao.handler.DateTimeTypeHandler" />
+            <columnOverride column="updated_at" typeHandler="com.sodacar.deer.dao.handler.DateTimeTypeHandler" />
+        </table>
+        <table tableName="vehicle" domainObjectName="Vehicle" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
+            <columnOverride column="created_at" typeHandler="com.sodacar.deer.dao.handler.DateTimeTypeHandler" />
+            <columnOverride column="updated_at" typeHandler="com.sodacar.deer.dao.handler.DateTimeTypeHandler" />
+            <columnOverride column="product_at" typeHandler="com.sodacar.deer.dao.handler.DateTimeTypeHandler" />
+        </table>
     </context>
 
 </generatorConfiguration>

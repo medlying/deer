@@ -29,26 +29,6 @@ public class Device {
 
     private String updaterType;
 
-    public Device(Long id, String number, String cardNumber, String status, Boolean isDeleted, DateTime createdAt, Long creatorId, String creatorName, String creatorType, DateTime updatedAt, Long updaterId, String updaterName, String updaterType) {
-        this.id = id;
-        this.number = number;
-        this.cardNumber = cardNumber;
-        this.status = status;
-        this.isDeleted = isDeleted;
-        this.createdAt = createdAt;
-        this.creatorId = creatorId;
-        this.creatorName = creatorName;
-        this.creatorType = creatorType;
-        this.updatedAt = updatedAt;
-        this.updaterId = updaterId;
-        this.updaterName = updaterName;
-        this.updaterType = updaterType;
-    }
-
-    public Device() {
-        super();
-    }
-
     public Long getId() {
         return id;
     }

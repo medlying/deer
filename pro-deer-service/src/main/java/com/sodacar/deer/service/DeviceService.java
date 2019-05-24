@@ -14,5 +14,5 @@ public interface DeviceService {
     /**
      * 列表
      */
-    List<Device> list();
+    List<Device> list(int page, int pageLimit);
 }

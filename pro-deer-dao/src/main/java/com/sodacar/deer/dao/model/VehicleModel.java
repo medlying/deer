@@ -31,43 +31,6 @@ public class VehicleModel {
 
     private String bid;
 
-    public VehicleModel(Long id, String name, Long brandId, String brandName, String url, DateTime createdAt, Long creatorId, String creatorName, String creatorType, DateTime updatedAt, Long updaterId, String updaterName, String updaterType) {
-        this.id = id;
-        this.name = name;
-        this.brandId = brandId;
-        this.brandName = brandName;
-        this.url = url;
-        this.createdAt = createdAt;
-        this.creatorId = creatorId;
-        this.creatorName = creatorName;
-        this.creatorType = creatorType;
-        this.updatedAt = updatedAt;
-        this.updaterId = updaterId;
-        this.updaterName = updaterName;
-        this.updaterType = updaterType;
-    }
-
-    public VehicleModel(Long id, String name, Long brandId, String brandName, String url, DateTime createdAt, Long creatorId, String creatorName, String creatorType, DateTime updatedAt, Long updaterId, String updaterName, String updaterType, String bid) {
-        this.id = id;
-        this.name = name;
-        this.brandId = brandId;
-        this.brandName = brandName;
-        this.url = url;
-        this.createdAt = createdAt;
-        this.creatorId = creatorId;
-        this.creatorName = creatorName;
-        this.creatorType = creatorType;
-        this.updatedAt = updatedAt;
-        this.updaterId = updaterId;
-        this.updaterName = updaterName;
-        this.updaterType = updaterType;
-        this.bid = bid;
-    }
-
-    public VehicleModel() {
-        super();
-    }
-
     public Long getId() {
         return id;
     }

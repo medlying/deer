@@ -11,9 +11,9 @@ public class VehicleBrandExample {
 
     protected List<Criteria> oredCriteria;
 
-    protected int limitStart = -1;
+    protected int start = -1;
 
-    protected int limitEnd = -1;
+    protected int limit = -1;
 
     public VehicleBrandExample() {
         oredCriteria = new ArrayList<Criteria>();
@@ -68,36 +68,92 @@ public class VehicleBrandExample {
         distinct = false;
     }
 
-    public void setLimitStart(int limitStart) {
-        this.limitStart=limitStart;
+    public void setStart(int start) {
+        this.start=start;
     }
 
-    public int getLimitStart() {
-        return limitStart;
+    public int getStart() {
+        return start;
     }
 
-    public void setLimitEnd(int limitEnd) {
-        this.limitEnd=limitEnd;
+    public void setLimit(int limit) {
+        this.limit=limit;
     }
 
-    public int getLimitEnd() {
-        return limitEnd;
+    public int getLimit() {
+        return limit;
     }
 
     protected abstract static class GeneratedCriteria {
+        protected List<Criterion> createdAtCriteria;
+
+        protected List<Criterion> updatedAtCriteria;
+
+        protected List<Criterion> allCriteria;
+
         protected List<Criterion> criteria;
 
         protected GeneratedCriteria() {
             super();
             criteria = new ArrayList<Criterion>();
+            createdAtCriteria = new ArrayList<Criterion>();
+            updatedAtCriteria = new ArrayList<Criterion>();
+        }
+
+        public List<Criterion> getCreatedAtCriteria() {
+            return createdAtCriteria;
+        }
+
+        protected void addCreatedAtCriterion(String condition, Object value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            createdAtCriteria.add(new Criterion(condition, value, "com.sodacar.deer.dao.handler.DateTimeTypeHandler"));
+            allCriteria = null;
+        }
+
+        protected void addCreatedAtCriterion(String condition, DateTime value1, DateTime value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            createdAtCriteria.add(new Criterion(condition, value1, value2, "com.sodacar.deer.dao.handler.DateTimeTypeHandler"));
+            allCriteria = null;
+        }
+
+        public List<Criterion> getUpdatedAtCriteria() {
+            return updatedAtCriteria;
+        }
+
+        protected void addUpdatedAtCriterion(String condition, Object value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            updatedAtCriteria.add(new Criterion(condition, value, "com.sodacar.deer.dao.handler.DateTimeTypeHandler"));
+            allCriteria = null;
+        }
+
+        protected void addUpdatedAtCriterion(String condition, DateTime value1, DateTime value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            updatedAtCriteria.add(new Criterion(condition, value1, value2, "com.sodacar.deer.dao.handler.DateTimeTypeHandler"));
+            allCriteria = null;
         }
 
         public boolean isValid() {
-            return criteria.size() > 0;
+            return criteria.size() > 0
+                || createdAtCriteria.size() > 0
+                || updatedAtCriteria.size() > 0;
         }
 
         public List<Criterion> getAllCriteria() {
-            return criteria;
+            if (allCriteria == null) {
+                allCriteria = new ArrayList<Criterion>();
+                allCriteria.addAll(criteria);
+                allCriteria.addAll(createdAtCriteria);
+                allCriteria.addAll(updatedAtCriteria);
+            }
+            return allCriteria;
         }
 
         public List<Criterion> getCriteria() {
@@ -109,6 +165,7 @@ public class VehicleBrandExample {
                 throw new RuntimeException("Value for condition cannot be null");
             }
             criteria.add(new Criterion(condition));
+            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value, String property) {
@@ -116,6 +173,7 @@ public class VehicleBrandExample {
                 throw new RuntimeException("Value for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value));
+            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value1, Object value2, String property) {
@@ -123,6 +181,7 @@ public class VehicleBrandExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
+            allCriteria = null;
         }
 
         public Criteria andIdIsNull() {
@@ -336,52 +395,52 @@ public class VehicleBrandExample {
         }
 
         public Criteria andCreatedAtEqualTo(DateTime value) {
-            addCriterion("created_at =", value, "createdAt");
+            addCreatedAtCriterion("created_at =", value, "createdAt");
             return (Criteria) this;
         }
 
         public Criteria andCreatedAtNotEqualTo(DateTime value) {
-            addCriterion("created_at <>", value, "createdAt");
+            addCreatedAtCriterion("created_at <>", value, "createdAt");
             return (Criteria) this;
         }
 
         public Criteria andCreatedAtGreaterThan(DateTime value) {
-            addCriterion("created_at >", value, "createdAt");
+            addCreatedAtCriterion("created_at >", value, "createdAt");
             return (Criteria) this;
         }
 
         public Criteria andCreatedAtGreaterThanOrEqualTo(DateTime value) {
-            addCriterion("created_at >=", value, "createdAt");
+            addCreatedAtCriterion("created_at >=", value, "createdAt");
             return (Criteria) this;
         }
 
         public Criteria andCreatedAtLessThan(DateTime value) {
-            addCriterion("created_at <", value, "createdAt");
+            addCreatedAtCriterion("created_at <", value, "createdAt");
             return (Criteria) this;
         }
 
         public Criteria andCreatedAtLessThanOrEqualTo(DateTime value) {
-            addCriterion("created_at <=", value, "createdAt");
+            addCreatedAtCriterion("created_at <=", value, "createdAt");
             return (Criteria) this;
         }
 
         public Criteria andCreatedAtIn(List<DateTime> values) {
-            addCriterion("created_at in", values, "createdAt");
+            addCreatedAtCriterion("created_at in", values, "createdAt");
             return (Criteria) this;
         }
 
         public Criteria andCreatedAtNotIn(List<DateTime> values) {
-            addCriterion("created_at not in", values, "createdAt");
+            addCreatedAtCriterion("created_at not in", values, "createdAt");
             return (Criteria) this;
         }
 
         public Criteria andCreatedAtBetween(DateTime value1, DateTime value2) {
-            addCriterion("created_at between", value1, value2, "createdAt");
+            addCreatedAtCriterion("created_at between", value1, value2, "createdAt");
             return (Criteria) this;
         }
 
         public Criteria andCreatedAtNotBetween(DateTime value1, DateTime value2) {
-            addCriterion("created_at not between", value1, value2, "createdAt");
+            addCreatedAtCriterion("created_at not between", value1, value2, "createdAt");
             return (Criteria) this;
         }
 
@@ -596,52 +655,52 @@ public class VehicleBrandExample {
         }
 
         public Criteria andUpdatedAtEqualTo(DateTime value) {
-            addCriterion("updated_at =", value, "updatedAt");
+            addUpdatedAtCriterion("updated_at =", value, "updatedAt");
             return (Criteria) this;
         }
 
         public Criteria andUpdatedAtNotEqualTo(DateTime value) {
-            addCriterion("updated_at <>", value, "updatedAt");
+            addUpdatedAtCriterion("updated_at <>", value, "updatedAt");
             return (Criteria) this;
         }
 
         public Criteria andUpdatedAtGreaterThan(DateTime value) {
-            addCriterion("updated_at >", value, "updatedAt");
+            addUpdatedAtCriterion("updated_at >", value, "updatedAt");
             return (Criteria) this;
         }
 
         public Criteria andUpdatedAtGreaterThanOrEqualTo(DateTime value) {
-            addCriterion("updated_at >=", value, "updatedAt");
+            addUpdatedAtCriterion("updated_at >=", value, "updatedAt");
             return (Criteria) this;
         }
 
         public Criteria andUpdatedAtLessThan(DateTime value) {
-            addCriterion("updated_at <", value, "updatedAt");
+            addUpdatedAtCriterion("updated_at <", value, "updatedAt");
             return (Criteria) this;
         }
 
         public Criteria andUpdatedAtLessThanOrEqualTo(DateTime value) {
-            addCriterion("updated_at <=", value, "updatedAt");
+            addUpdatedAtCriterion("updated_at <=", value, "updatedAt");
             return (Criteria) this;
         }
 
         public Criteria andUpdatedAtIn(List<DateTime> values) {
-            addCriterion("updated_at in", values, "updatedAt");
+            addUpdatedAtCriterion("updated_at in", values, "updatedAt");
             return (Criteria) this;
         }
 
         public Criteria andUpdatedAtNotIn(List<DateTime> values) {
-            addCriterion("updated_at not in", values, "updatedAt");
+            addUpdatedAtCriterion("updated_at not in", values, "updatedAt");
             return (Criteria) this;
         }
 
         public Criteria andUpdatedAtBetween(DateTime value1, DateTime value2) {
-            addCriterion("updated_at between", value1, value2, "updatedAt");
+            addUpdatedAtCriterion("updated_at between", value1, value2, "updatedAt");
             return (Criteria) this;
         }
 
         public Criteria andUpdatedAtNotBetween(DateTime value1, DateTime value2) {
-            addCriterion("updated_at not between", value1, value2, "updatedAt");
+            addUpdatedAtCriterion("updated_at not between", value1, value2, "updatedAt");
             return (Criteria) this;
         }
 

@@ -27,25 +27,6 @@ public class Dealer {
 
     private String updaterType;
 
-    public Dealer(Long id, String number, String name, Boolean isDeleted, DateTime createdAt, Long creatorId, String creatorName, String creatorType, DateTime updatedAt, Long updaterId, String updaterName, String updaterType) {
-        this.id = id;
-        this.number = number;
-        this.name = name;
-        this.isDeleted = isDeleted;
-        this.createdAt = createdAt;
-        this.creatorId = creatorId;
-        this.creatorName = creatorName;
-        this.creatorType = creatorType;
-        this.updatedAt = updatedAt;
-        this.updaterId = updaterId;
-        this.updaterName = updaterName;
-        this.updaterType = updaterType;
-    }
-
-    public Dealer() {
-        super();
-    }
-
     public Long getId() {
         return id;
     }

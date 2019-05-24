@@ -25,8 +25,8 @@ public class PaginationMysqlPlugin extends PluginAdapter {
 
     @Override
     public boolean modelExampleClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
-        addLimit(topLevelClass, introspectedTable, "limitStart");
-        addLimit(topLevelClass, introspectedTable, "limitEnd");
+        addLimit(topLevelClass, introspectedTable, "start");
+        addLimit(topLevelClass, introspectedTable, "limit");
         return super.modelExampleClassGenerated(topLevelClass, introspectedTable);
     }
 

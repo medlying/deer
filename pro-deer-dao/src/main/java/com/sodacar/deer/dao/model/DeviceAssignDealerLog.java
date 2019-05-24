@@ -19,21 +19,6 @@ public class DeviceAssignDealerLog {
 
     private String creatorType;
 
-    public DeviceAssignDealerLog(Long id, Long dealerId, String dealerName, Boolean status, DateTime createdAt, Long creatorId, String creatorName, String creatorType) {
-        this.id = id;
-        this.dealerId = dealerId;
-        this.dealerName = dealerName;
-        this.status = status;
-        this.createdAt = createdAt;
-        this.creatorId = creatorId;
-        this.creatorName = creatorName;
-        this.creatorType = creatorType;
-    }
-
-    public DeviceAssignDealerLog() {
-        super();
-    }
-
     public Long getId() {
         return id;
     }

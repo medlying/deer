@@ -21,8 +21,10 @@ public class DeviceServiceImpl implements DeviceService {
     DeviceMapper deviceMapper;
 
     @Override
-    public List<Device> list() {
+    public List<Device> list(int page, int pageLimit) {
         DeviceExample deviceExample = new DeviceExample();
+        deviceExample.setStart(page > 0 ? (page - 1) * pageLimit : 0);
+        deviceExample.setLimit(pageLimit);
         deviceExample.createCriteria().andCardNumberEqualTo("1234");
         return deviceMapper.selectByExample(deviceExample);
     }

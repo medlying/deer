@@ -21,33 +21,6 @@ public class VehicleCheckLog {
 
     private String info;
 
-    public VehicleCheckLog(Long id, Long deviceId, String deviceNumber, String status, DateTime createdAt, Long creatorId, String creatorName, String creatorType) {
-        this.id = id;
-        this.deviceId = deviceId;
-        this.deviceNumber = deviceNumber;
-        this.status = status;
-        this.createdAt = createdAt;
-        this.creatorId = creatorId;
-        this.creatorName = creatorName;
-        this.creatorType = creatorType;
-    }
-
-    public VehicleCheckLog(Long id, Long deviceId, String deviceNumber, String status, DateTime createdAt, Long creatorId, String creatorName, String creatorType, String info) {
-        this.id = id;
-        this.deviceId = deviceId;
-        this.deviceNumber = deviceNumber;
-        this.status = status;
-        this.createdAt = createdAt;
-        this.creatorId = creatorId;
-        this.creatorName = creatorName;
-        this.creatorType = creatorType;
-        this.info = info;
-    }
-
-    public VehicleCheckLog() {
-        super();
-    }
-
     public Long getId() {
         return id;
     }

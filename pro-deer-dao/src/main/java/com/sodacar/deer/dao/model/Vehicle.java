@@ -51,37 +51,6 @@ public class Vehicle {
 
     private String updaterType;
 
-    public Vehicle(Long id, Long vehicleModelId, String vehicleModeName, String vin, String engineNumber, Long factoryId, String factoryName, Long deviceId, String deviceNumber, Long dealerId, String dealerName, String bindMobile, String color, String licenseNumber, DateTime productAt, String status, DateTime createdAt, Long creatorId, String creatorName, DateTime updatedAt, Long updaterId, String updaterName, String creatorType, String updaterType) {
-        this.id = id;
-        this.vehicleModelId = vehicleModelId;
-        this.vehicleModeName = vehicleModeName;
-        this.vin = vin;
-        this.engineNumber = engineNumber;
-        this.factoryId = factoryId;
-        this.factoryName = factoryName;
-        this.deviceId = deviceId;
-        this.deviceNumber = deviceNumber;
-        this.dealerId = dealerId;
-        this.dealerName = dealerName;
-        this.bindMobile = bindMobile;
-        this.color = color;
-        this.licenseNumber = licenseNumber;
-        this.productAt = productAt;
-        this.status = status;
-        this.createdAt = createdAt;
-        this.creatorId = creatorId;
-        this.creatorName = creatorName;
-        this.updatedAt = updatedAt;
-        this.updaterId = updaterId;
-        this.updaterName = updaterName;
-        this.creatorType = creatorType;
-        this.updaterType = updaterType;
-    }
-
-    public Vehicle() {
-        super();
-    }
-
     public Long getId() {
         return id;
     }
