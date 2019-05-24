@@ -27,7 +27,6 @@ public class DeviceController {
     @RequestMapping(method = RequestMethod.GET)
     public Page<Device> list(@RequestParam("page") int page,
                              @RequestParam("page-limit") int limit) {
-//        PageHelper.startPage(page, limit);
         return deviceService.list().toPage(page, limit);
     }
 }

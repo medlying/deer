@@ -5,6 +5,9 @@ spring:
     username: root
     password: password
     type: com.alibaba.druid.pool.DruidDataSource
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true
 mybatis:
   mapper-locations: classpath*:com/sodacar/deer/dao/mapper/xml/*Mapper.xml
   type-aliases-package: com.sodacar.deer.dao.model

@@ -44,12 +44,12 @@ public class PaginationMysqlPlugin extends PluginAdapter {
 
     private void addLimit(TopLevelClass topLevelClass, IntrospectedTable introspectedTable, String name) {
         FullyQualifiedJavaType longJavaType = new FullyQualifiedJavaType("long");
+        PrimitiveTypeWrapper longInstance = PrimitiveTypeWrapper.getLongInstance();
         CommentGenerator commentGenerator = context.getCommentGenerator();
         Field field = new Field();
         field.setVisibility(JavaVisibility.PROTECTED);
-        field.setType(longJavaType);
+        field.setType(longInstance);
         field.setName(name);
-        field.setInitializationString("-1");
         commentGenerator.addFieldComment(field, introspectedTable);
         topLevelClass.addField(field);
         char c = name.charAt(0);
@@ -57,13 +57,13 @@ public class PaginationMysqlPlugin extends PluginAdapter {
         Method method = new Method();
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setName("set" + camel);
-        method.addParameter(new Parameter(longJavaType, name));
+        method.addParameter(new Parameter(longInstance, name));
         method.addBodyLine("this." + name + "=" + name + ";");
         commentGenerator.addGeneralMethodComment(method, introspectedTable);
         topLevelClass.addMethod(method);
         method = new Method();
         method.setVisibility(JavaVisibility.PUBLIC);
-        method.setReturnType(longJavaType);
+        method.setReturnType(longInstance);
         method.setName("get" + camel);
         method.addBodyLine("return " + name + ";");
         commentGenerator.addGeneralMethodComment(method, introspectedTable);

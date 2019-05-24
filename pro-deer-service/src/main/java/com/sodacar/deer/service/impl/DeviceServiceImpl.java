@@ -23,8 +23,7 @@ public class DeviceServiceImpl implements DeviceService {
 
     @Override
     public Pageable<Device> list() {
-        DeviceExample deviceExample = new DeviceExample();
-        deviceExample.createCriteria().andCardNumberEqualTo("1234");
+        var deviceExample = new DeviceExample();
         return new Pageable<>(deviceMapper.countByExample(deviceExample), (page, limit) -> {
             deviceExample.setStart(page);
             deviceExample.setLimit(limit);

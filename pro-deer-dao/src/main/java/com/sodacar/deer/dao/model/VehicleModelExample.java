@@ -11,9 +11,9 @@ public class VehicleModelExample {
 
     protected List<Criteria> oredCriteria;
 
-    protected long start = -1;
+    protected Long start;
 
-    protected long limit = -1;
+    protected Long limit;
 
     public VehicleModelExample() {
         oredCriteria = new ArrayList<Criteria>();
@@ -68,19 +68,19 @@ public class VehicleModelExample {
         distinct = false;
     }
 
-    public void setStart(long start) {
+    public void setStart(Long start) {
         this.start=start;
     }
 
-    public long getStart() {
+    public Long getStart() {
         return start;
     }
 
-    public void setLimit(long limit) {
+    public void setLimit(Long limit) {
         this.limit=limit;
     }
 
-    public long getLimit() {
+    public Long getLimit() {
         return limit;
     }
 
