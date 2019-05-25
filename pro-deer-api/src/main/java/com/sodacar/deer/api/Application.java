@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.sodacar.deer"})
+@ComponentScan(basePackages = {"com.sodacar.deer", "com.sodacar.commons"})
 @MapperScan("com.sodacar.deer.dao.mapper")
 public class Application {
 

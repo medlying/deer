@@ -7,19 +7,52 @@ package com.sodacar.commons.exception;
 
 public abstract class AbstractBaseException extends RuntimeException{
 
-    private String code;
+    protected String code;
 
-    private String message;
+    protected String message;
+
+    protected Object[] param;
+
+    protected Data data;
 
     /**
      * 返回异常的code
      * @return code
      */
-    public abstract String code();
+    public String code() {
+        return code;
+    }
+
+    public String message() {
+        return message;
+    }
+
+    public Object[] param() {
+        return param;
+    }
+
+    public Data data() {
+        return data;
+    }
+
+
 
     @Override
     public String getMessage() {
         return "code: " + code + ", message: " + message;
+    }
+
+    public static class Data<T> {
+
+        protected T data;
+
+        public Data(T data) {
+            this.data = data;
+        }
+
+        public T data() {
+            return data;
+        }
     }
 
 }

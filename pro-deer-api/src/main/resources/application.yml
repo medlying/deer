@@ -7,7 +7,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
   jackson:
     serialization:
-      write-dates-as-timestamps: true
+      write_dates_as_timestamps: true
 mybatis:
   mapper-locations: classpath*:com/sodacar/deer/dao/mapper/xml/*Mapper.xml
   type-aliases-package: com.sodacar.deer.dao.model
@@ -16,3 +16,7 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
+default:
+  exception:
+    code: too_busy
+    message: 未知错误
