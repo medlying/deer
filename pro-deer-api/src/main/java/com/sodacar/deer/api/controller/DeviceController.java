@@ -1,12 +1,15 @@
 package com.sodacar.deer.api.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sodacar.commons.page.Page;
 import com.sodacar.deer.dao.model.Device;
 import com.sodacar.deer.service.DeviceService;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -22,8 +25,14 @@ public class DeviceController {
     DeviceService deviceService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public Page<Device> list(@RequestParam("page") int page,
-                             @RequestParam("page-limit") int limit) {
+    public Page<Device> list(@RequestParam("page") long page,
+                             @RequestParam("page-limit") long limit) {
         return deviceService.list().toPage(page, limit);
+    }
+
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.POST)
+    public Device add() {
+        return deviceService.insert();
     }
 }

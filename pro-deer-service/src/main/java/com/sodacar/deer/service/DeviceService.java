@@ -17,4 +17,10 @@ public interface DeviceService {
      * @return
      */
     Pageable<Device> list();
+
+    /**
+     * 插入
+     * @return
+     */
+    Device insert();
 }

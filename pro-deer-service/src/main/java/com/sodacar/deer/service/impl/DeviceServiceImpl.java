@@ -30,4 +30,11 @@ public class DeviceServiceImpl implements DeviceService {
             return deviceMapper.selectByExample(deviceExample);
         });
     }
+
+    @Override
+    public Device insert() {
+        Device device = new Device();
+        deviceMapper.insertSelective(device);
+        return device;
+    }
 }

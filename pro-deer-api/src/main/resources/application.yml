@@ -11,12 +11,11 @@ spring:
 mybatis:
   mapper-locations: classpath*:com/sodacar/deer/dao/mapper/xml/*Mapper.xml
   type-aliases-package: com.sodacar.deer.dao.model
-pagehelper:
-  helperDialect: mysql
-  reasonable: true
-  supportMethodsArguments: true
-  params: count=countSql
+#pagehelper:
+#  helperDialect: mysql
+#  reasonable: true
+#  supportMethodsArguments: true
+#  params: count=countSql
 default:
   exception:
     code: too_busy
-    message: 未知错误
