@@ -1,12 +1,16 @@
 package com.sodacar.deer.service.model.BaseUserVo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 /**
  * @author bosong
  * @date 2019-05-27
  */
 
+@Data
+@AllArgsConstructor
 public class Updater {
 
     @JsonProperty("id")
@@ -17,10 +21,4 @@ public class Updater {
 
     @JsonProperty("type")
     private String updaterType;
-
-    public Updater(Long updaterId, String updaterName, String updaterType) {
-        this.updaterId = updaterId;
-        this.updaterName = updaterName;
-        this.updaterType = updaterType;
-    }
 }

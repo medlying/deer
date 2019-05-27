@@ -1,12 +1,16 @@
 package com.sodacar.deer.service.model.BaseUserVo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 /**
  * @author bosong
  * @date 2019-05-27
  */
 
+@Data
+@AllArgsConstructor
 public class Creator {
     @JsonProperty("id")
     private Long creatorId;
@@ -16,10 +20,4 @@ public class Creator {
 
     @JsonProperty("type")
     private String creatorType;
-
-    public Creator(Long creatorId, String creatorName, String creatorType) {
-        this.creatorId = creatorId;
-        this.creatorName = creatorName;
-        this.creatorType = creatorType;
-    }
 }
