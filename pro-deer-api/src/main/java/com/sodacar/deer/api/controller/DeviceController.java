@@ -4,8 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sodacar.commons.page.Page;
 import com.sodacar.deer.dao.model.Device;
 import com.sodacar.deer.service.DeviceService;
+import com.sodacar.deer.service.model.DeviceVo;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,14 +27,14 @@ public class DeviceController {
     DeviceService deviceService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public Page<Device> list(@RequestParam("page") long page,
-                             @RequestParam("page-limit") long limit) {
+    public Page<DeviceVo> list(@RequestParam("page") long page,
+                               @RequestParam("page-limit") long limit) {
         return deviceService.list().toPage(page, limit);
     }
 
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST)
-    public Device add() {
-        return deviceService.insert();
+    public Device add(Device device) {
+        return deviceService.insert(device);
     }
 }

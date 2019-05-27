@@ -87,7 +87,7 @@ public class SourceHandler {
             return inputStream;
         }
 
-        private String propertiesByLocale(Locale defaultLocale) {
+        private String propertiesByLocale(Locale locale) {
             return locale.toString() + ".properties";
         }
     }

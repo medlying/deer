@@ -29,6 +29,7 @@ public class Device {
 
     private String updaterType;
 
+
     public Long getId() {
         return id;
     }
